@@ -1,0 +1,44 @@
+<div class="row mx-0">
+        <span class="col-sm-11 font-weight-bold">Team information selection</span>
+        <mat-icon class="float-right col-sm-1 text-right cursor-pointer" (click)="closeDialog()">close</mat-icon>
+            </div>
+            <hr/>
+<div class="row mx-0 cotainer">
+    
+
+    <mat-card class="col-sm-5 mr-2 height_scrol" >
+        <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let x of source; let i = index">
+                <mat-radio-button color="primary"  [value]="x"
+                    (change)="selection = $event.value">
+                    <small class="text-wrap">{{x.Name}}</small>
+                </mat-radio-button>
+            </mat-list-item>
+        </mat-list>
+    </mat-card>
+    <mat-card class="h-25" style="margin-top:10em">
+        <div class="mb-3">
+                <mat-icon class="cursor-pointer bg_primary brder_radius_5px" (click)="movelefttoright()">keyboard_arrow_right</mat-icon>
+            
+        </div>
+        <div>
+                <mat-icon class="cursor-pointer bg_primary brder_radius_5px" (click)="moverighttoleft()">keyboard_arrow_left</mat-icon>
+        </div>
+    </mat-card>
+    <mat-card class="col-sm-5 ml-2 height_scrol">
+        <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let x of destination; let i = index">
+                <mat-radio-button color="primary"  [value]="x"
+                    (change)="destinationSelection = $event.value">
+                    <small class="text-wrap">{{x.Name}}</small>
+                </mat-radio-button>
+            </mat-list-item>
+        </mat-list>
+    </mat-card>
+</div>
+<hr/>
+<div>
+        <button type="button" class="float-right bg_primary" (click)="sendSelectedData()" [disabled]="destination.length==0"  mat-raised-button>
+Ok                
+           </button>
+</div>

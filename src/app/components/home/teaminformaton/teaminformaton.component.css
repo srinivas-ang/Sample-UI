@@ -1,0 +1,11 @@
+.height_scrol{
+    min-height: 20em;
+    max-height: 35em;
+    overflow: auto;
+}
+.brder_radius_5px{
+    border-radius: 5px;
+}
+.mat-list-item{
+height: 35px !important;
+}

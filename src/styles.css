@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+body{
+    font-size: 12px !important;
+    font-family: 'Roboto'
+}
+.btn-primary {
+    color: #fff;
+    background-color: #673ab7 !important;
+    border-color: #673ab7 !important;
+}
+.border_bottom{
+    border-bottom: #dfdfdf 1px solid;
+}
+.cursor-pointer{
+cursor: pointer;
+}
+.bg_primary{
+    background: maroon !important;
+    color: gold !important;
+}
+.width_20em{
+    width: 20em !important;
+}
+/* .mat-primary {
+    background-color: maroon !important;
+} */
+.mat-raised-button.mat-primary {
+    background-color: maroon !important;
+}
+.mat-button.mat-button-base.mat-primary.mat-raised-button{
+    color: gold !important
+      }
+
+
+/* theme changes for input types start */
+.mat-form-field.mat-focused .mat-form-field-ripple{
+    background-color: maroon  !important;
+}
+.mat-form-field.mat-focused .mat-form-field-prefix{
+    color: maroon !important;
+}
+.mat-form-field.mat-focused .mat-form-field-label{
+    color: maroon  !important;
+}
+.mat-form-field.mat-focused .mat-form-field-outline.mat-form-field-outline-thick{
+    color: maroon  !important;
+}
+/* theme changes for input types end */
+
+
+/* select dropdown style changes start */
+.mat-option {
+height: 30px !important;
+}
+/* select dropdown style changes end */
+
+.mat-snack-bar-container{
+    background-color: #98FB98 !important;
+    color: black !important;
+}

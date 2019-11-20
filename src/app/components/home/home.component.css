@@ -1,0 +1,46 @@
+
+    :host 
+        ::ng-deep .mat-tab-group {
+            flex-direction: row;
+        }
+        ::ng-deep .mat-tab-header {
+          border-bottom: none;
+        }
+        ::ng-deep .mat-tab-header-pagination {
+            display: none !important;
+        }
+        ::ng-deep .mat-tab-labels {
+            flex-direction: column;
+        }
+        ::ng-deep .mat-ink-bar {
+            height: 100%;
+            left: 98% !important;
+        }
+        ::ng-deep .mat-tab-body-wrapper {
+            flex: 1 1 auto;
+        }
+        ::ng-deep .mat-tab-list{
+            border-right: maroon 2px solid !important;
+        }
+        ::ng-deep .mat-tab-label{
+            background-color: white !important;
+            font-weight: bold !important;
+            /* border-right: maroon 2px solid !important; */
+        }
+        ::ng-deep .mat-tab-label-active{
+            
+            opacity: unset !important;
+            background-color: maroon !important;
+            color: gold !important;
+        }
+
+        .mat-list-item:hover {
+            background-color: #dfdfdf;
+        }
+        
+        .menu_style{
+            min-height: 30em;
+            max-height: 50em !important;
+            overflow: auto;
+        }
+        
