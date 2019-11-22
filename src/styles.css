@@ -2,7 +2,7 @@
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 body{
-    font-size: 12px !important;
+    font-size: 16px !important;
     font-family: 'Roboto'
 }
 .btn-primary {
@@ -53,6 +53,7 @@ cursor: pointer;
 /* select dropdown style changes start */
 .mat-option {
 height: 30px !important;
+margin-top:5px !important;
 }
 /* select dropdown style changes end */
 
