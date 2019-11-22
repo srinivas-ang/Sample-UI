@@ -7,7 +7,6 @@ import { take, takeUntil } from 'rxjs/operators';
 import { MatSelect } from '@angular/material';
 import { MatDialog } from '@angular/material';
 import { TeaminformatonComponent } from '../home/teaminformaton/teaminformaton.component';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
 @Component({
   selector: 'app-pitchcreation',
   templateUrl: './pitchcreation.component.html',
@@ -237,7 +236,8 @@ export class PitchcreationComponent implements OnInit,OnDestroy {
       ClientName: new FormControl('', Validators.required),
       ProductInfo:new FormArray([]),
       TeamInfo:new FormControl('',Validators.required),
-      AdditionalTeamInfo:new FormControl('')
+      AdditionalTeamInfo:new FormControl(''),
+      CorpFinnInvolved:new FormControl('')
 
     });
     this.addProductInfoForm();
@@ -308,6 +308,15 @@ this.filteredCPL2=this.cpl2Json.filter(x=> x.Base == val);
   }
   removeProductInfoForm(index){
     this.productInfoForm.removeAt(index);
+  }
+  removeAllProductInfoForm(){
+    debugger
+    for(var i=this.productInfoForm.length-1 ; i>= 0 ; i--)
+    {
+      this.productInfoForm.removeAt(i);
+    }
+    this.addProductInfoForm();
+
   }
 
   

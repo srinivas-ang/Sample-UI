@@ -54,6 +54,7 @@
                                          <legend class="px-1 ml-2 legend_style">Product Information</legend>
                                          <div class="row mx-1">
                                          <mat-icon (click)="addProductInfoForm()" class="float-right mx-4 mb-2 bg_primary cursor-pointer" *ngIf="!productInfoForm.invalid">add</mat-icon>
+                                         <mat-icon (click)="removeAllProductInfoForm()" *ngIf="productInfoForm.length!=1" class="float-right mx-4 mb-2 bg_primary cursor-pointer">close</mat-icon>
                                         </div>
                                          <div class="mx-4  mb-2 fieldset_style" *ngFor="let productForm of productInfoForm.controls; let i=index">
                                              <div [formGroup]="productForm" class="row m-0 mt-1">
@@ -96,23 +97,7 @@
                                              <legend class="px-1 ml-2 legend_style">Team Information</legend>
                                              <div class="mx-4 row">
                                                  <div class="col-sm">
-                                                        <!-- <ng-multiselect-dropdown
-                                                        formControlName="TeamInfo"
-                                                        placeholder="custom placeholder"
-                                                        [data]="teamInfoJson"
-                                                        [settings]="dropdownSettings"
-                                                        
-                                                      >
-                                                      </ng-multiselect-dropdown> -->
-
-                                                      <!-- <ng-multiselect-dropdown #multiSelect
-      [placeholder]="'Select City'" 
-      [data]="data" 
-      formControlName="TeamInfo"
-      [settings]="dropdownSettings"
-      
-      >
-		</ng-multiselect-dropdown> -->
+                                                    
                                                 <mat-form-field class="w-100">
                                                     <mat-label>Team Info</mat-label>
                                                     <mat-select formControlName="TeamInfo" [multiple]="true" #multiSelect>
@@ -135,19 +120,7 @@
                                                         <span>{{i+1}}. {{team.Name}}</span>
                                                 </label>
                                                     </div>
-                                                <!-- <div class="col-sm">
-                                                     <mat-form-field class="w-100">
-                                                          <textarea style="height:100px" formControlName="TeamInfo" matInput placeholder="Pitch Team" required></textarea>
-                                                     </mat-form-field>
-                                                </div>
-                                                <div class=" card mb-3">
-                                                     <div>
-                                                        <mat-icon (click)="openDialog()" class="font-weight-bold cursor-pointer" style="color: forestgreen;">more_vert</mat-icon>
-                                                     </div>
-                                                     <div>
-                                                       <mat-icon class="font-weight-bold cursor-pointer" style="color: forestgreen;">close</mat-icon>
-                                                     </div>
-                                                </div> -->
+                                              
                                              </div>
                                              <div class="mx-4 row mt-4">
                                                              <div class="col-sm">
@@ -163,6 +136,13 @@
                                                                                <mat-icon (click)='clearAdditionalTeamInfo()' class="font-weight-bold cursor-pointer" style="color: forestgreen;">close</mat-icon>
                                                                              </div>
                                                                         </div>
+                                                          </div>
+                                                          <div class="mx-5 row mt-4 mb-4">
+                                                              <label>Corp Finn Involved : </label>
+                                                                <mat-radio-group class="ml-5" aria-label="Corp Finn Involved" formControlName="CorpFinnInvolved">
+                                                                        <mat-radio-button color="primary" class="mr-4" value=true>Yes</mat-radio-button>
+                                                                        <mat-radio-button color="primary" value=false>No</mat-radio-button>
+                                                                      </mat-radio-group>
                                                           </div>
                                      </fieldset>
                                 </fieldset>
