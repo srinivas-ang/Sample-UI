@@ -5,6 +5,9 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 import { Subject, ReplaySubject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { MatSelect } from '@angular/material';
+import { MatDialog } from '@angular/material';
+import { TeaminformatonComponent } from '../home/teaminformaton/teaminformaton.component';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 @Component({
   selector: 'app-pitchcreation',
   templateUrl: './pitchcreation.component.html',
@@ -20,8 +23,11 @@ export class PitchcreationComponent implements OnInit,OnDestroy {
   public filteredTeamInfo:ReplaySubject<any[]> = new ReplaySubject<any[]>(1);
   public filteredCPL2:any=[];
   filterCPL1:any;
+  pitchMinDate:Date=new Date();
   protected _onDestroy = new Subject<void>();
   @ViewChild('multiSelect', { static: true }) multiSelect: MatSelect;
+  isSubmitted:boolean=false;
+  teamInfoDropdownSettings = {};
   
   clients = [
     { id: 'id1', clientName: 'Bruce' },
@@ -151,39 +157,46 @@ export class PitchcreationComponent implements OnInit,OnDestroy {
   ]
   teamInfoJson:any[] = [
     {
-      Name: 'Customer & Retail',
-      Value: 'Customer & Retail'
+      Name: 'James Smith',
+      Value: 'James, Smith'
     },
     {
-      Name: 'Energy & Power',
-      Value: 'Energy & Power'
+      Name: 'Maria Rodriguez',
+      Value: 'Maria, Rodriguez'
     },
     {
-      Name: 'Financial Institutions',
-      Value: 'Financial Institutions'
+      Name: 'James Johnson',
+      Value: 'James, Johnson'
     },
     {
-      Name: 'Gaming',
-      Value: 'Gaming'
+      Name: 'Robert Smith',
+      Value: 'Robert, Smith'
     },
     {
-      Name: 'Healthcare',
-      Value: 'Healthcare'
+      Name: 'Maria Martinez',
+      Value: 'Maria, Martinez'
     },
     {
-      Name: 'Industrial',
-      Value: 'Industrial'
+      Name: 'IndusDavid Smithtrial',
+      Value: 'David, Smith'
     },
     {
-      Name: 'RestFin',
-      Value: 'RestFin'
+      Name: 'Juan Carlos',
+      Value: 'Juan, Carlos'
     },
     {
-      Name: 'Technology, Media & Telecom',
-      Value: 'Technology, Media & Telecom'
+      Name: 'Mike Jones',
+      Value: 'Mike, Jones'
     }
 
   ]
+  data = [
+    { item_id: 1, item_text: 'Hanoi' },
+    { item_id: 2, item_text: 'Lang Son' },
+    { item_id: 3, item_text: 'Vung Tau' },
+    { item_id: 4, item_text: 'Hue' },
+    { item_id: 5, item_text: 'Cu Chi' }
+  ];
 
   pitchSpinnerButtonOptions: MatProgressButtonOptions = {
     active: false,
@@ -200,7 +213,7 @@ export class PitchcreationComponent implements OnInit,OnDestroy {
     //   fontIcon: 'add'
     // }
   }
-  constructor( private formBuilder:FormBuilder, private snackBarService:SnackbarService) {
+  constructor(public dialog: MatDialog, private formBuilder:FormBuilder, private snackBarService:SnackbarService) {
     this.initResourceForm();
    // this.teamInfoSearchCtrl.setValue('');
   }
@@ -208,16 +221,10 @@ export class PitchcreationComponent implements OnInit,OnDestroy {
     this.setInitialValue();
   }
   protected setInitialValue() {
-    debugger
     this.filteredTeamInfo
       .pipe(take(1), takeUntil(this._onDestroy))
       .subscribe(() => {
-        // setting the compareWith property to a comparison function
-        // triggers initializing the selection according to the initial value of
-        // the form control (i.e. _initializeSelection())
-        // this needs to be done after the filteredBanks are loaded initially
-        // and after the mat-option elements are available
-        debugger
+        
         this.multiSelect.compareWith = (a: any, b: any) => a && b && a.id === b.id;
       });
   }
@@ -237,14 +244,31 @@ export class PitchcreationComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit() {
-    this.f.TeamInfo.setValue([this.teamInfoJson[1], this.teamInfoJson[2]]);
+    this.teamInfoDropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      enableCheckAll: true,
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      allowSearchFilter: true,
+      limitSelection: -1,
+      clearSearchFilter: true,
+      maxHeight: 197,
+      itemsShowLimit: 3,
+      searchPlaceholderText: 'Search',
+      noDataAvailablePlaceholderText: 'No search result found.',
+      closeDropDownOnSelection: false,
+      showSelectedItemsAtTop: false,
+      defaultOpen: false
+    };
+    // this.f.TeamInfo.setValue([this.teamInfoJson[1], this.teamInfoJson[2]]);
     this.filteredTeamInfo.next(this.teamInfoJson.slice());
     this.filteredCPL2=this.cpl2Json;
     // this.filteredTeamInfo=this.teamInfoJson;
   console.log(this.filteredTeamInfo)
 
   this.teamInfoSearchCtrl.valueChanges.pipe(takeUntil(this._onDestroy)).subscribe(()=>{
-    debugger
     this.filterTeamInfo();
   })
 
@@ -255,7 +279,6 @@ export class PitchcreationComponent implements OnInit,OnDestroy {
   }
 
   CPL1OnChange(val){
-    debugger
 this.filteredCPL2=this.cpl2Json.filter(x=> x.Base == val);
   }
   
@@ -268,7 +291,6 @@ this.filteredCPL2=this.cpl2Json.filter(x=> x.Base == val);
   addProductInfoForm(){
     if(!this.f.ProductInfo.invalid)
     {
-      debugger
       this.productInfoForm.push(this.formBuilder.group({
         CPL1:['', Validators.required],
         CPL2:['',Validators.required]
@@ -312,6 +334,7 @@ this.filteredCPL2=this.cpl2Json.filter(x=> x.Base == val);
     }
   }
   createResource() {
+    this.isSubmitted=true;
     if (this.pitchCreationForm.invalid) {
       (<any>Object).values(this.f).forEach(control => {
         control.markAsTouched();
@@ -319,13 +342,14 @@ this.filteredCPL2=this.cpl2Json.filter(x=> x.Base == val);
       this.checkProductFormValidations();
       return;
     }
-   
     this.pitchSpinnerButtonOptions.active = true;
     alert(JSON.stringify(this.pitchCreationForm.value))
     setTimeout(() => {
       this.snackBarService.message="Pitch creation successfully created."
+
       this.snackBarService.showSnackbar();
       this.pitchSpinnerButtonOptions.active = false;
+      this.isSubmitted=false;
       this.resetResourceFrom();
    
     }, 3000);
@@ -333,7 +357,6 @@ this.filteredCPL2=this.cpl2Json.filter(x=> x.Base == val);
   }
  
   public filterTeamInfo() {
-    debugger
     if (!this.teamInfoJson) {
       return;
     }
@@ -351,6 +374,29 @@ this.filteredCPL2=this.cpl2Json.filter(x=> x.Base == val);
     );
   }
 
+  clearAdditionalTeamInfo()
+  {
+    this.f.AdditionalTeamInfo.setValue('');
+  }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(TeaminformatonComponent, {
+      width: '60%',
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.selectedTeamInfo = result;
+      
+      if(result != null && result.length > 0){
+        this.selectedTeamInfo='';
+      result.forEach(element => {
+        // this.selectedTeamInfo+=element.Name + ', ';
+         this.selectedTeamInfo +=element.Name+ '\n' + '\n';
+      });
+      this.f["AdditionalTeamInfo"].setValue(this.selectedTeamInfo);
+    }
+     
+    });
 
+  }
 }

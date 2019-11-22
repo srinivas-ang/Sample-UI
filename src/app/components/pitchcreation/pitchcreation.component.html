@@ -6,11 +6,21 @@
                                 <mat-form-field class="w-100 ">
                                      <input type="text" formControlName="Name" matInput placeholder="Name" required>
                                 </mat-form-field>
+                                <div class="text-danger" *ngIf="f.Name.invalid && f.Name.errors.required && isSubmitted">
+                                    Name Required.
+                                </div>
                                 <mat-form-field class="w-100">
-                                     <input matInput [matDatepicker]="picker" formControlName="PitchDate" placeholder="Pitch Date" required>
+                                     <input matInput [matDatepicker]="picker" [min]='pitchMinDate' formControlName="PitchDate" placeholder="Pitch Date" required>
                                      <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
                                      <mat-datepicker #picker></mat-datepicker>
                                 </mat-form-field>
+                                
+                                <!-- <div class="text-danger" *ngIf="f.PitchDate.invalid && f.PitchDate.errors.matDatepickerMin">
+                                        selected date is less than today date.
+                                    </div>-->
+                                <div class="text-danger" *ngIf="f.PitchDate.invalid && f.PitchDate.errors.required && isSubmitted">
+                                        date Required.
+                                    </div> 
                                 <fieldset class="mt-2 mb-2 w-100 fieldset_style">
                                      <legend class="px-1 ml-2 legend_style" > Pitch Information</legend>
                                      <fieldset class="mt-2 mb-2 mx-2 fieldset_style">
@@ -24,6 +34,9 @@
                                                              </mat-option>
                                                           </mat-autocomplete>
                                                      </mat-form-field>
+                                                     <div class="text-danger" *ngIf="f.Industry.invalid && f.Industry.errors.required && isSubmitted">
+                                                            Name Required.
+                                                        </div>
                                                      <mat-form-field class="w-100">
                                                          <input matInput placeholder="Client Name" formControlName="ClientName" aria-label="Client Name" [matAutocomplete]="autoClient" required>
                                                              <mat-autocomplete #autoClient="matAutocomplete">
@@ -32,6 +45,9 @@
                                                                   </mat-option>
                                                              </mat-autocomplete>
                                                      </mat-form-field>
+                                                     <div class="text-danger" *ngIf="f.ClientName.invalid && f.ClientName.errors.required && isSubmitted">
+                                                            Name Required.
+                                                        </div>
                                              </div>
                                      </fieldset>
                                      <fieldset class="mt-2 mb-2 mx-2 fieldset_style">
@@ -51,6 +67,9 @@
                                                              </mat-option>
                                                      </mat-autocomplete>
                                                  </mat-form-field>
+                                                 <div class="text-danger" *ngIf="productForm['controls'].CPL1.status!='VALID' && isSubmitted">
+                                                        CPL1 Required.
+                                                    </div> 
                                              </div>
                                              <div class="col-sm-9 mt-1" *ngIf="productForm['controls'].CPL1.status=='VALID'">
                                                  <mat-form-field class="w-100">
@@ -62,6 +81,9 @@
                                                          </mat-option>
                                                      </mat-autocomplete>
                                                  </mat-form-field>
+                                                 <div class="text-danger" *ngIf="productForm['controls'].CPL2.status!='VALID' && isSubmitted">
+                                                        CPL2 Required.
+                                                    </div>
                                              </div>
                                              <div class="col-sm-1 mt-3 text-danger cursor-pointer">
      <mat-icon (click)="removeProductInfoForm(i)" *ngIf="i!=0">close</mat-icon>
@@ -73,6 +95,24 @@
                                      <fieldset class="mt-2 mb-2 mx-2 fieldset_style">
                                              <legend class="px-1 ml-2 legend_style">Team Information</legend>
                                              <div class="mx-4 row">
+                                                 <div class="col-sm">
+                                                        <!-- <ng-multiselect-dropdown
+                                                        formControlName="TeamInfo"
+                                                        placeholder="custom placeholder"
+                                                        [data]="teamInfoJson"
+                                                        [settings]="dropdownSettings"
+                                                        
+                                                      >
+                                                      </ng-multiselect-dropdown> -->
+
+                                                      <!-- <ng-multiselect-dropdown #multiSelect
+      [placeholder]="'Select City'" 
+      [data]="data" 
+      formControlName="TeamInfo"
+      [settings]="dropdownSettings"
+      
+      >
+		</ng-multiselect-dropdown> -->
                                                 <mat-form-field class="w-100">
                                                     <mat-label>Team Info</mat-label>
                                                     <mat-select formControlName="TeamInfo" [multiple]="true" #multiSelect>
@@ -84,6 +124,17 @@
                                                       </mat-option>
                                                     </mat-select>
                                                 </mat-form-field>
+                                                <div class="text-danger" *ngIf="f.TeamInfo.invalid  && isSubmitted">
+                                                        TeamInfo Required.
+                                                    </div>
+                                            </div>
+                                                <div class="card col-sm" style="max-height: 150px;
+                                                overflow: auto;" *ngIf="f.TeamInfo.valid">
+                                                <label class="font-weight-bold">Selected Team Info</label>
+                                                <label class="w-100 pl-3" *ngFor="let team of f.TeamInfo?.value; let i=index;">
+                                                        <span>{{i+1}}. {{team.Name}}</span>
+                                                </label>
+                                                    </div>
                                                 <!-- <div class="col-sm">
                                                      <mat-form-field class="w-100">
                                                           <textarea style="height:100px" formControlName="TeamInfo" matInput placeholder="Pitch Team" required></textarea>
@@ -106,10 +157,10 @@
                                                              </div>
                                                              <div class="card mb-3">
                                                                              <div>
-                                                                                <mat-icon class="font-weight-bold cursor-pointer" style="color: forestgreen;">more_vert</mat-icon>
+                                                                                <mat-icon (click)="openDialog()" class="font-weight-bold cursor-pointer" style="color: forestgreen;">more_vert</mat-icon>
                                                                              </div>
                                                                              <div>
-                                                                               <mat-icon class="font-weight-bold cursor-pointer" style="color: forestgreen;">close</mat-icon>
+                                                                               <mat-icon (click)='clearAdditionalTeamInfo()' class="font-weight-bold cursor-pointer" style="color: forestgreen;">close</mat-icon>
                                                                              </div>
                                                                         </div>
                                                           </div>
