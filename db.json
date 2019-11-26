@@ -1,0 +1,240 @@
+{
+  "getUserDetails": [
+    {
+      "UserName": "testadmin",
+      "Password": "testadmin",
+      "Role": "Admin"
+    },
+    {
+      "UserName": "testbanker",
+      "Password": "testbanker",
+      "Role": "Banker"
+    }
+  ],
+  "getIndustry": [
+    {
+      "Name": "Customer & Retail",
+      "Value": "Customer & Retail"
+    },
+    {
+      "Name": "Energy & Power",
+      "Value": "Energy & Power"
+    },
+    {
+      "Name": "Financial Institutions",
+      "Value": "Financial Institutions"
+    },
+    {
+      "Name": "Gaming",
+      "Value": "Gaming"
+    },
+    {
+      "Name": "Healthcare",
+      "Value": "Healthcare"
+    },
+    {
+      "Name": "Industrial",
+      "Value": "Industrial"
+    },
+    {
+      "Name": "RestFin",
+      "Value": "RestFin"
+    },
+    {
+      "Name": "Technology, Media & Telecom",
+      "Value": "Technology, Media & Telecom"
+    }
+  ],
+  "getClientNames": [
+    {
+      "Name": "Test242",
+      "Value": "Test2424"
+    },
+    {
+      "Name": "The kroger Co.",
+      "Value": "The kroger Co."
+    }
+  ],
+  "getCPL1Details": [
+    {
+      "Name": "Deposits Other",
+      "Value": "Deposits Other"
+    },
+    {
+      "Name": "Fed Funds Deposits",
+      "Value": "Fed Funds Deposits"
+    },
+    {
+      "Name": "Interest Bearing DDAs",
+      "Value": "Interest Bearing DDAs"
+    },
+    {
+      "Name": "Non-Interest Bearing DDAs & Float",
+      "Value": "Non-Interest Bearing DDAs & Float"
+    },
+    {
+      "Name": "Structured Deposits",
+      "Value": "Structured Deposits"
+    },
+    {
+      "Name": "Sweep Balances",
+      "Value": "Sweep Balances"
+    },
+    {
+      "Name": "Time Deposits/Placements",
+      "Value": "Time Deposits/Placements"
+    }
+  ],
+  "getCPL2Details": [
+    {
+      "Name": "Deposits Other  cpl2",
+      "Value": "Deposits Other  cpl2",
+      "Base": "Deposits Other"
+    },
+    {
+      "Name": "Fed Funds Deposits  cpl2",
+      "Value": "Fed Funds Deposits  cpl2",
+      "Base": "Deposits Other"
+    },
+    {
+      "Name": "Interest Bearing DDAs  cpl2",
+      "Value": "Interest Bearing DDAs  cpl2",
+      "Base": "Interest Bearing DDAs"
+    },
+    {
+      "Name": "Non-Interest Bearing DDAs & Float  cpl2",
+      "Value": "Non-Interest Bearing DDAs & Float  cpl2",
+      "Base": "Interest Bearing DDAs"
+    },
+    {
+      "Name": "Structured Deposits cpl2",
+      "Value": "Structured Deposits cpl2",
+      "Base": "Interest Bearing DDAs"
+    },
+    {
+      "Name": "Sweep Balances cpl2",
+      "Value": "Sweep Balances cpl2",
+      "Base": "Sweep Balances"
+    },
+    {
+      "Name": "Time Deposits/Placements cpl2",
+      "Value": "Time Deposits/Placements cpl2",
+      "Base": "Sweep Balances"
+    }
+  ],
+  "getTeamInfoDetails": [
+    {
+      "Name": "James, Smith",
+      "Value": "James, Smith"
+    },
+    {
+      "Name": "Maria, Rodriguez",
+      "Value": "Maria, Rodriguez"
+    },
+    {
+      "Name": "James, Johnson",
+      "Value": "James, Johnson"
+    },
+    {
+      "Name": "Robert, Smith",
+      "Value": "Robert, Smith"
+    },
+    {
+      "Name": "Maria, Martinez",
+      "Value": "Maria, Martinez"
+    },
+    {
+      "Name": "IndusDavid, Smithtrial",
+      "Value": "David, Smith"
+    },
+    {
+      "Name": "Juan, Carlos",
+      "Value": "Juan, Carlos"
+    },
+    {
+      "Name": "Mike, Jones",
+      "Value": "Mike, Jones"
+    }
+  ],
+  "pitchCreation": [
+    {
+      "Name": "ghjgj",
+      "PitchDate": "2019-11-24T18:30:00.000Z",
+      "Industry": "Financial Institutions",
+      "ClientName": "The kroger Co.",
+      "ProductInfo": [
+        {
+          "CPL1": "Deposits Other",
+          "CPL2": "Deposits Other  cpl2"
+        }
+      ],
+      "TeamInfo": [
+        {
+          "Value": "Maria, Rodriguez",
+          "Name": "Maria, Rodriguez"
+        },
+        {
+          "Value": "James, Smith",
+          "Name": "James, Smith"
+        }
+      ],
+      "AdditionalTeamInfo": "Deposits Other\n\nFed Funds Deposits\n\n",
+      "CorpFinnInvolved": "false",
+      "id": 1
+    },
+    {
+      "Name": "fsdff",
+      "PitchDate": "2019-11-24T18:30:00.000Z",
+      "Industry": "Financial Institutions",
+      "ClientName": "The kroger Co.",
+      "ProductInfo": [
+        {
+          "CPL1": "Deposits Other",
+          "CPL2": "Deposits Other  cpl2"
+        }
+      ],
+      "TeamInfo": [
+        {
+          "Value": "Maria, Rodriguez",
+          "Name": "Maria, Rodriguez"
+        },
+        {
+          "Value": "James, Smith",
+          "Name": "James, Smith"
+        },
+        {
+          "Value": "James, Johnson",
+          "Name": "James, Johnson"
+        }
+      ],
+      "AdditionalTeamInfo": "Deposits Other\n\nFed Funds Deposits\n\nNon-Interest Bearing DDAs & Float\n\n",
+      "CorpFinnInvolved": "true",
+      "id": 2
+    },
+    {
+      "Name": "sri",
+      "PitchDate": "2019-11-25T18:30:00.000Z",
+      "Industry": "Energy & Power",
+      "ClientName": "Test2424",
+      "ProductInfo": [
+        {
+          "CPL1": "Deposits Other",
+          "CPL2": "Deposits Other  cpl2"
+        }
+      ],
+      "TeamInfo": [
+        {
+          "Value": "James, Smith",
+          "Name": "James, Smith"
+        },
+        {
+          "Value": "Maria, Rodriguez",
+          "Name": "Maria, Rodriguez"
+        }
+      ],
+      "AdditionalTeamInfo": "Fed Funds Deposits\n\nDeposits Other\n\n",
+      "CorpFinnInvolved": "true",
+      "id": 3
+    }
+  ]
+}
