@@ -12,6 +12,8 @@ export class TeaminformatonComponent implements OnInit {
   private selection: any=[];
   destinationSelection:any=[];
   private destination:any=[];
+  private filteredSource:any=[];
+  private searchText:any='';
 source = [
   {
     Name: 'Deposits Other',
@@ -78,9 +80,18 @@ source = [
 
   }
   ngOnInit(){
-
+//     debugger
+//     this.source.forEach(x=>{
+//       this.filteredSource.push(x);
+//     })
+// this.filteredSource=Object.assign({}, this.source);
   }
-
+// searchChange(){
+//   if(this.searchText !='')
+// this.filteredSource=this.source.filter(obj=> obj.Name.indexOf(this.searchText.toLowerCase()));
+// else
+// this.filteredSource=Object.assign({}, this.source);
+// }
   sourceChange(event){
   this.selection=event.value;
   }

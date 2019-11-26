@@ -1,6 +1,6 @@
 .height_scrol{
-    min-height: 20em;
-    max-height: 35em;
+    min-height: 15em;
+    max-height: 25em;
     overflow: auto;
 }
 .brder_radius_5px{
