@@ -7,6 +7,9 @@ import { take, takeUntil } from 'rxjs/operators';
 import { MatSelect } from '@angular/material';
 import { MatDialog } from '@angular/material';
 import { TeaminformatonComponent } from '../home/teaminformaton/teaminformaton.component';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { PitchcreationService } from '../../services/pitchcreation.service';
+
 @Component({
   selector: 'app-pitchcreation',
   templateUrl: './pitchcreation.component.html',
@@ -19,6 +22,8 @@ export class PitchcreationComponent implements OnInit,OnDestroy {
   
   public cpl1FilterCtrl: FormControl = new FormControl();
   public teamInfoSearchCtrl:FormControl=new FormControl();
+  public industrySearchCtrl:FormControl=new FormControl();
+  public clientNameSearchCtrl:FormControl=new FormControl();
   public filteredTeamInfo:ReplaySubject<any[]> = new ReplaySubject<any[]>(1);
   public filteredCPL2:any=[];
   filterCPL1:any;
@@ -26,13 +31,10 @@ export class PitchcreationComponent implements OnInit,OnDestroy {
   protected _onDestroy = new Subject<void>();
   @ViewChild('multiSelect', { static: true }) multiSelect: MatSelect;
   isSubmitted:boolean=false;
-  teamInfoDropdownSettings = {};
+  industrySearchText:any='';
+  clientNameSearchText:any='';
+  teamInfoDropdownSettings :IDropdownSettings= {};
   
-  clients = [
-    { id: 'id1', clientName: 'Bruce' },
-    { id: 'id2', clientName: 'Ben' },
-    { id: 'id3', clientName: 'Peter' }
-  ];
 
   industryJson = [
     {
@@ -156,46 +158,40 @@ export class PitchcreationComponent implements OnInit,OnDestroy {
   ]
   teamInfoJson:any[] = [
     {
-      Name: 'James Smith',
+      Name: 'James, Smith',
       Value: 'James, Smith'
     },
     {
-      Name: 'Maria Rodriguez',
+      Name: 'Maria, Rodriguez',
       Value: 'Maria, Rodriguez'
     },
     {
-      Name: 'James Johnson',
+      Name: 'James, Johnson',
       Value: 'James, Johnson'
     },
     {
-      Name: 'Robert Smith',
+      Name: 'Robert, Smith',
       Value: 'Robert, Smith'
     },
     {
-      Name: 'Maria Martinez',
+      Name: 'Maria, Martinez',
       Value: 'Maria, Martinez'
     },
     {
-      Name: 'IndusDavid Smithtrial',
+      Name: 'IndusDavid, Smithtrial',
       Value: 'David, Smith'
     },
     {
-      Name: 'Juan Carlos',
+      Name: 'Juan, Carlos',
       Value: 'Juan, Carlos'
     },
     {
-      Name: 'Mike Jones',
+      Name: 'Mike, Jones',
       Value: 'Mike, Jones'
     }
 
   ]
-  data = [
-    { item_id: 1, item_text: 'Hanoi' },
-    { item_id: 2, item_text: 'Lang Son' },
-    { item_id: 3, item_text: 'Vung Tau' },
-    { item_id: 4, item_text: 'Hue' },
-    { item_id: 5, item_text: 'Cu Chi' }
-  ];
+  
 
   pitchSpinnerButtonOptions: MatProgressButtonOptions = {
     active: false,
@@ -212,7 +208,7 @@ export class PitchcreationComponent implements OnInit,OnDestroy {
     //   fontIcon: 'add'
     // }
   }
-  constructor(public dialog: MatDialog, private formBuilder:FormBuilder, private snackBarService:SnackbarService) {
+  constructor(public dialog: MatDialog, private formBuilder:FormBuilder,private pitchService:PitchcreationService, private snackBarService:SnackbarService) {
     this.initResourceForm();
    // this.teamInfoSearchCtrl.setValue('');
   }
@@ -246,9 +242,9 @@ export class PitchcreationComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.teamInfoDropdownSettings = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      enableCheckAll: true,
+      idField: 'Value',
+      textField: 'Name',
+      enableCheckAll: false,
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       allowSearchFilter: true,
@@ -267,7 +263,12 @@ export class PitchcreationComponent implements OnInit,OnDestroy {
     this.filteredCPL2=this.cpl2Json;
     // this.filteredTeamInfo=this.teamInfoJson;
   console.log(this.filteredTeamInfo)
-
+this.industrySearchCtrl.valueChanges.pipe(takeUntil(this._onDestroy)).subscribe(()=>{
+  this.industrySearchText = this.industrySearchCtrl.value;
+});
+this.clientNameSearchCtrl.valueChanges.pipe(takeUntil(this._onDestroy)).subscribe(()=>{
+  this.clientNameSearchText = this.clientNameSearchCtrl.value;
+})
   this.teamInfoSearchCtrl.valueChanges.pipe(takeUntil(this._onDestroy)).subscribe(()=>{
     this.filterTeamInfo();
   })
@@ -277,8 +278,14 @@ export class PitchcreationComponent implements OnInit,OnDestroy {
     this._onDestroy.next();
     this._onDestroy.complete();
   }
-
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
+  }
   CPL1OnChange(val){
+    debugger
 this.filteredCPL2=this.cpl2Json.filter(x=> x.Base == val);
   }
   
@@ -287,6 +294,19 @@ this.filteredCPL2=this.cpl2Json.filter(x=> x.Base == val);
   }
   get productInfoForm(){
     return this.f.ProductInfo as FormArray;
+  }
+  cplKeyPress(event,index,name)
+  {
+    debugger
+    if(name == 'CPL1')
+    this.productInfoForm.controls[index]['value'].CPL1='';
+    else
+    this.productInfoForm.controls[index]['value'].CPL2='';
+    
+    this.productInfoForm.controls[index]['controls'][name].status='INVALID';
+    this.productInfoForm.controls[index]['controls'][name].value='';
+    event.target.value='';
+    event.preventDefault();
   }
   addProductInfoForm(){
     if(!this.f.ProductInfo.invalid)
@@ -346,22 +366,31 @@ this.filteredCPL2=this.cpl2Json.filter(x=> x.Base == val);
     this.isSubmitted=true;
     if (this.pitchCreationForm.invalid) {
       (<any>Object).values(this.f).forEach(control => {
+        debugger
         control.markAsTouched();
       });
       this.checkProductFormValidations();
       return;
     }
     this.pitchSpinnerButtonOptions.active = true;
-    alert(JSON.stringify(this.pitchCreationForm.value))
-    setTimeout(() => {
+    alert(JSON.stringify(this.pitchCreationForm.value));
+    this.pitchService.createpitch(this.pitchCreationForm.value).subscribe(result=>{
       this.snackBarService.message="Pitch creation successfully created."
 
       this.snackBarService.showSnackbar();
       this.pitchSpinnerButtonOptions.active = false;
       this.isSubmitted=false;
       this.resetResourceFrom();
+    });
+    // setTimeout(() => {
+    //   this.snackBarService.message="Pitch creation successfully created."
+
+    //   this.snackBarService.showSnackbar();
+    //   this.pitchSpinnerButtonOptions.active = false;
+    //   this.isSubmitted=false;
+    //   this.resetResourceFrom();
    
-    }, 3000);
+    // }, 3000);
 
   }
  

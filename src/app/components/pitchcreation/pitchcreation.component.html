@@ -15,10 +15,10 @@
                                      <mat-datepicker #picker></mat-datepicker>
                                 </mat-form-field>
                                 
-                                <!-- <div class="text-danger" *ngIf="f.PitchDate.invalid && f.PitchDate.errors.matDatepickerMin">
+                                <div class="text-danger" *ngIf="f.PitchDate.invalid && f.PitchDate.touched && f.PitchDate.errors?.matDatepickerMin">
                                         selected date is less than today date.
-                                    </div>-->
-                                <div class="text-danger" *ngIf="f.PitchDate.invalid && f.PitchDate.errors.required && isSubmitted">
+                                    </div>
+                                <div class="text-danger" *ngIf="f.PitchDate.invalid && f.PitchDate.errors.required && (f.PitchDate.touched || isSubmitted)">
                                         date Required.
                                     </div> 
                                 <fieldset class="mt-2 mb-2 w-100 fieldset_style">
@@ -27,23 +27,42 @@
                                              <legend class="px-1 ml-2 legend_style">Relationship Information</legend>
                                              <div class="mx-4">
                                                      <mat-form-field class="w-100">
-                                                          <input matInput  placeholder="Industry" formControlName="Industry" aria-label="Industry" [matAutocomplete]="autoIndustry" required>
+                                                            <mat-label>Industry</mat-label>
+                                                            <mat-select formControlName="Industry" [multiple]="false">
+                                                                <mat-option>
+                                                                    <ngx-mat-select-search [placeholderLabel]="'Search industry'" [formControl]="industrySearchCtrl" [noEntriesFoundLabel]="'no matching team found'" ></ngx-mat-select-search>
+                                                                </mat-option>
+                                                                <mat-option *ngFor="let industry of industryJson | listfilter:industrySearchText " [value]="industry.Value">
+                                                                        <small>{{industry.Name}}</small>
+                                                                      </mat-option>
+                                                            </mat-select>
+                                                          <!-- <input matInput  placeholder="Industry" formControlName="Industry" aria-label="Industry" [matAutocomplete]="autoIndustry" required>
                                                           <mat-autocomplete #autoIndustry="matAutocomplete">
                                                              <mat-option *ngFor="let industry of industryJson " [value]="industry.Value">
                                                                <small>{{industry.Name}}</small>
                                                              </mat-option>
-                                                          </mat-autocomplete>
+                                                          </mat-autocomplete> -->
                                                      </mat-form-field>
                                                      <div class="text-danger" *ngIf="f.Industry.invalid && f.Industry.errors.required && isSubmitted">
                                                             Name Required.
                                                         </div>
                                                      <mat-form-field class="w-100">
-                                                         <input matInput placeholder="Client Name" formControlName="ClientName" aria-label="Client Name" [matAutocomplete]="autoClient" required>
+                                                            <mat-label>Client Name</mat-label>
+                                                            <mat-select formControlName="ClientName" [multiple]="false">
+                                                                <mat-option>
+                                                                    <ngx-mat-select-search [placeholderLabel]="'Search client name'" [formControl]="clientNameSearchCtrl" [noEntriesFoundLabel]="'no matching client found'" ></ngx-mat-select-search>
+                                                                </mat-option>
+                                                                <mat-option *ngFor="let client of clientNamesJson | listfilter:clientNameSearchText"[value]="client.Value">
+                                                                        <small>{{client.Name}}</small>
+                                                                     </mat-option>
+                                                               
+                                                            </mat-select>
+                                                         <!-- <input matInput placeholder="Client Name" formControlName="ClientName" aria-label="Client Name" [matAutocomplete]="autoClient" required>
                                                              <mat-autocomplete #autoClient="matAutocomplete">
                                                                  <mat-option *ngFor="let client of clientNamesJson "[value]="client.Value">
                                                                      <small>{{client.Name}}</small>
                                                                   </mat-option>
-                                                             </mat-autocomplete>
+                                                             </mat-autocomplete> -->
                                                      </mat-form-field>
                                                      <div class="text-danger" *ngIf="f.ClientName.invalid && f.ClientName.errors.required && isSubmitted">
                                                             Name Required.
@@ -60,8 +79,13 @@
                                              <div [formGroup]="productForm" class="row m-0 mt-1">
                                              <div class="col-sm-2 mt-1">
                                                  <mat-form-field class="w-100">
-                                                       
-                                                     <input matInput formControlName="CPL1" placeholder="CPL1" aria-label="CPL1" [matAutocomplete]="autoCPL1" required>
+                                                        <!-- <mat-label>CPL1</mat-label>
+                                                        <mat-select formControlName="CPL1" [multiple]="false" (selectionChange)='CPL1OnChange($event.value)'>
+                                                                 <mat-option *ngFor="let cpl1 of cpl1Json " [value]="cpl1.Value">
+                                                                        <small>{{cpl1.Name}}</small>
+                                                                    </mat-option>
+                                                        </mat-select> -->
+                                                     <input matInput formControlName="CPL1" placeholder="CPL1" aria-label="CPL1" (keyup)="cplKeyPress($event,i,'CPL1')" [matAutocomplete]="autoCPL1" required>
                                                      <mat-autocomplete #autoCPL1="matAutocomplete" (optionSelected)='CPL1OnChange($event.option.value)'>
                                                              <mat-option *ngFor="let cpl1 of cpl1Json " [value]="cpl1.Value">
                                                                  <small>{{cpl1.Name}}</small>
@@ -74,8 +98,14 @@
                                              </div>
                                              <div class="col-sm-9 mt-1" *ngIf="productForm['controls'].CPL1.status=='VALID'">
                                                  <mat-form-field class="w-100">
-                                                       
-                                                     <input matInput formControlName="CPL2" placeholder="CPL2" aria-label="CPL2" [matAutocomplete]="autoCPL2" required>
+                                                        <!-- <mat-label>CPL2</mat-label>
+                                                        <mat-select formControlName="CPL2" [multiple]="false">
+                                                                <mat-option *ngFor="let cpl2 of filteredCPL2 "[value]="cpl2.Value">
+                                                                        <small>{{cpl2.Name}}</small>
+                                                                    </mat-option>
+                                                        </mat-select> -->
+                                                     <input matInput formControlName="CPL2"  placeholder="CPL2" aria-label="CPL2" (keyup)="cplKeyPress($event,i,'CPL2')" [matAutocomplete]="autoCPL2" required>
+
                                                      <mat-autocomplete #autoCPL2="matAutocomplete">
                                                          <mat-option *ngFor="let cpl2 of filteredCPL2 "[value]="cpl2.Value">
                                                              <small>{{cpl2.Name}}</small>
@@ -98,7 +128,16 @@
                                              <div class="mx-4 row">
                                                  <div class="col-sm">
                                                     
-                                                <mat-form-field class="w-100">
+    <ng-multiselect-dropdown formControlName="TeamInfo"
+    [placeholder]="'Select team info'"
+    [data]="teamInfoJson"
+    [settings]="teamInfoDropdownSettings"
+    (onSelect)="onItemSelect($event)"
+    (onSelectAll)="onSelectAll($event)"
+  >
+  </ng-multiselect-dropdown>
+                                                <!-- <mat-form-field class="w-100">
+                                                    
                                                     <mat-label>Team Info</mat-label>
                                                     <mat-select formControlName="TeamInfo" [multiple]="true" #multiSelect>
                                                         <mat-option>
@@ -108,12 +147,12 @@
                                                             {{team.Name}}
                                                       </mat-option>
                                                     </mat-select>
-                                                </mat-form-field>
+                                                </mat-form-field> -->
                                                 <div class="text-danger" *ngIf="f.TeamInfo.invalid  && isSubmitted">
                                                         TeamInfo Required.
                                                     </div>
                                             </div>
-                                                <div class="card col-sm" style="max-height: 150px;
+                                                <div class="card col-sm-4" style="max-height: 150px;
                                                 overflow: auto;" *ngIf="f.TeamInfo.valid">
                                                 <label class="font-weight-bold">Selected Team Info</label>
                                                 <label class="w-100 pl-3" *ngFor="let team of f.TeamInfo?.value; let i=index;">
@@ -125,7 +164,7 @@
                                              <div class="mx-4 row mt-4">
                                                              <div class="col-sm">
                                                                   <mat-form-field class="w-100">
-                                                                       <textarea style="height:100px" formControlName="AdditionalTeamInfo" matInput placeholder="Additional Pitch Team"></textarea>
+                                                                       <textarea style="height:100px" readonly formControlName="AdditionalTeamInfo" matInput placeholder="Additional Pitch Team"></textarea>
                                                                   </mat-form-field>
                                                              </div>
                                                              <div class="card mb-3">

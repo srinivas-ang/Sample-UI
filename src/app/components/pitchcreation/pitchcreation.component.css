@@ -9,4 +9,23 @@
     color: #7e7f80;
     font-size: 14px;
 }
-
+.multiselect-dropdown .dropdown-btn .selected-item {
+    border: 1px solid maroon !important;
+    background: maroon !important;
+    border-radius: 5px !important;
+}
+.multiselect-dropdown .dropdown-btn .selected-item a{
+    padding-top: 0px !important;
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+    text-align: center  !important;
+    color: maroon !important;
+    background-color: white !important;
+    border-radius: 50% !important;
+}
+.multiselect-item-checkbox input[type=checkbox]:checked + div:before{
+    background: maroon !important;
+}
+.multiselect-item-checkbox input[type=checkbox] + div:before {
+    border: 2px solid maroon !important;
+}
