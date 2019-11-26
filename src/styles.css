@@ -55,6 +55,9 @@ cursor: pointer;
 height: 30px !important;
 margin-top:5px !important;
 }
+.mat-select-search-panel mat-option:nth-child(2) {
+    margin-top: 13px !important;
+  }
 /* select dropdown style changes end */
 
 .mat-snack-bar-container{
