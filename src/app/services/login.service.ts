@@ -6,10 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-baseUrl="";
+baseUrl="http://localhost:3200/";
   constructor(private _http:HttpClient) { }
 
   login(username, password): Observable<any>{
-    return this._http.get<any>(this.baseUrl+'controller/login?username='+username+'&password='+password)
+    return this._http.get<any>(this.baseUrl+'getUserDetails?UserName='+username+'&Password='+password)
   }
 }
