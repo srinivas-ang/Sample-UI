@@ -3,6 +3,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule ,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { MaterialModule } from './material/material.module';
 import { HomeComponent } from './components/home/home.component';
 import { TeaminformatonComponent } from './components/home/teaminformaton/teaminformaton.component';
 import { PitchcreationComponent } from './components/pitchcreation/pitchcreation.component';
+import { ListfilterPipe } from './pipes/listfilter.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { PitchcreationComponent } from './components/pitchcreation/pitchcreation
     LoginComponent,
     HomeComponent,
     TeaminformatonComponent,
-    PitchcreationComponent
+    PitchcreationComponent,
+    ListfilterPipe
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import { PitchcreationComponent } from './components/pitchcreation/pitchcreation
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   entryComponents:[TeaminformatonComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
