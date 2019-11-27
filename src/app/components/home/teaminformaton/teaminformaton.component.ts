@@ -14,68 +14,41 @@ export class TeaminformatonComponent implements OnInit {
   private destination:any=[];
   private filteredSource:any=[];
   private searchText:any='';
-source = [
-  {
-    Name: 'Deposits Other',
-    Value: 'Deposits Other'
-  },
-  {
-    Name: 'Fed Funds Deposits',
-    Value: 'Fed Funds Deposits'
-  },
-  {
-    Name: 'Interest Bearing DDAs',
-    Value: 'Interest Bearing DDAs'
-  },
-  {
-    Name: 'Non-Interest Bearing DDAs & Float',
-    Value: 'Non-Interest Bearing DDAs & Float'
-  },
-  {
-    Name: 'Structured Deposits',
-    Value: 'Structured Deposits'
-  },
-  {
-    Name: 'Sweep Balances',
-    Value: 'Sweep Balances'
-  },
-  {
-    Name: 'Time Deposits/Placements',
-    Value: 'Time Deposits/Placements'
-  },
+  source:any[] = [
     {
-      Name: 'Deposits Other',
-      Value: 'Deposits Other'
+      Name: 'James, Smith',
+      Value: 'James, Smith'
     },
     {
-      Name: 'Fed Funds Deposits',
-      Value: 'Fed Funds Deposits'
+      Name: 'Maria, Rodriguez',
+      Value: 'Maria, Rodriguez'
     },
     {
-      Name: 'Interest Bearing DDAs',
-      Value: 'Interest Bearing DDAs'
+      Name: 'James, Johnson',
+      Value: 'James, Johnson'
     },
     {
-      Name: 'Non-Interest Bearing DDAs & Float',
-      Value: 'Non-Interest Bearing DDAs & Float'
+      Name: 'Robert, Smith',
+      Value: 'Robert, Smith'
     },
     {
-      Name: 'Structured Deposits',
-      Value: 'Structured Deposits'
+      Name: 'Maria, Martinez',
+      Value: 'Maria, Martinez'
     },
     {
-      Name: 'Sweep Balances',
-      Value: 'Sweep Balances'
+      Name: 'IndusDavid, Smithtrial',
+      Value: 'David, Smith'
     },
     {
-      Name: 'Time Deposits/Placements',
-      Value: 'Time Deposits/Placements'
+      Name: 'Juan, Carlos',
+      Value: 'Juan, Carlos'
     },
-    
-
+    {
+      Name: 'Mike, Jones',
+      Value: 'Mike, Jones'
+    }
 
   ]
-
   constructor(public dialogRef: MatDialogRef<TeaminformatonComponent>){
 
   }
