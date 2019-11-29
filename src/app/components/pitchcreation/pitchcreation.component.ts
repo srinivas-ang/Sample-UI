@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
-import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, FormArray, NgForm } from '@angular/forms';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { Subject, ReplaySubject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
@@ -33,7 +33,7 @@ export class PitchcreationComponent implements OnInit,OnDestroy {
   isSubmitted:boolean=false;
   industrySearchText:any='';
   clientNameSearchText:any='';
-  teamInfoDropdownSettings :IDropdownSettings= {};
+  teamInfoDropdownSettings :any= {};
   
 
   industryJson = [
@@ -241,23 +241,33 @@ export class PitchcreationComponent implements OnInit,OnDestroy {
 
   ngOnInit() {
     this.teamInfoDropdownSettings = {
-      singleSelection: false,
-      idField: 'Value',
-      textField: 'Name',
-      enableCheckAll: false,
+      text: "Select Team Info",
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
-      allowSearchFilter: true,
-      limitSelection: -1,
-      clearSearchFilter: true,
-      maxHeight: 197,
-      itemsShowLimit: 3,
-      searchPlaceholderText: 'Search',
-      noDataAvailablePlaceholderText: 'No search result found.',
-      closeDropDownOnSelection: false,
-      showSelectedItemsAtTop: false,
-      defaultOpen: false
-    };
+      enableCheckAll: false,
+      labelKey:'Name',
+      primaryKey:'Value',
+      enableSearchFilter:true,
+      classes: "myclass custom-class"
+  };
+    // this.teamInfoDropdownSettings = {
+    //   singleSelection: false,
+    //   idField: 'Value',
+    //   textField: 'Name',
+    //   enableCheckAll: false,
+    //   selectAllText: 'Select All',
+    //   unSelectAllText: 'UnSelect All',
+    //   allowSearchFilter: true,
+    //   limitSelection: -1,
+    //   clearSearchFilter: true,
+    //   maxHeight: 197,
+    //   itemsShowLimit: 3,
+    //   searchPlaceholderText: 'Search',
+    //   noDataAvailablePlaceholderText: 'No search result found.',
+    //   closeDropDownOnSelection: false,
+    //   showSelectedItemsAtTop: false,
+    //   defaultOpen: false
+    // };
     // this.f.TeamInfo.setValue([this.teamInfoJson[1], this.teamInfoJson[2]]);
     this.filteredTeamInfo.next(this.teamInfoJson.slice());
     this.filteredCPL2=this.cpl2Json;
@@ -362,35 +372,30 @@ this.filteredCPL2=this.cpl2Json.filter(x=> x.Base == val);
       });
     }
   }
-  createResource() {
+  createResource(form: NgForm) {
     this.isSubmitted=true;
     if (this.pitchCreationForm.invalid) {
-      (<any>Object).values(this.f).forEach(control => {
-        debugger
-        control.markAsTouched();
-      });
-      this.checkProductFormValidations();
+      this.pitchCreationForm.markAllAsTouched();
+      // (<any>Object).values(this.f).forEach(control => {
+      //   debugger
+      //   control.markAsTouched();
+      // });
+      // this.checkProductFormValidations();
       return;
     }
     this.pitchSpinnerButtonOptions.active = true;
     alert(JSON.stringify(this.pitchCreationForm.value));
     this.pitchService.createpitch(this.pitchCreationForm.value).subscribe(result=>{
+      debugger
       this.snackBarService.message="Pitch creation successfully created."
 
       this.snackBarService.showSnackbar();
       this.pitchSpinnerButtonOptions.active = false;
       this.isSubmitted=false;
-      this.resetResourceFrom();
+      form.resetForm();
+       this.initResourceForm();
     });
-    // setTimeout(() => {
-    //   this.snackBarService.message="Pitch creation successfully created."
-
-    //   this.snackBarService.showSnackbar();
-    //   this.pitchSpinnerButtonOptions.active = false;
-    //   this.isSubmitted=false;
-    //   this.resetResourceFrom();
    
-    // }, 3000);
 
   }
  

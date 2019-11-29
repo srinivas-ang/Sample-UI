@@ -9,6 +9,19 @@
     color: #7e7f80;
     font-size: 14px;
 }
+::ng-deep .dropdown-list ul li {
+    padding: 5px !important;
+}
+::ng-deep.pure-checkbox input[type="checkbox"]:checked + label:before {
+    background: maroon !important;
+}
+::ng-deep.selected-list .c-list .c-token {
+    background: maroon;
+}
+::ng-deep.pure-checkbox input[type="checkbox"] + label:before {
+    color: maroon !important;
+    border: 1px solid maroon !important;
+}
 .multiselect-dropdown .dropdown-btn .selected-item {
     border: 1px solid maroon !important;
     background: maroon !important;
