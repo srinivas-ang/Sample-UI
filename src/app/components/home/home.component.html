@@ -30,12 +30,21 @@
                               [ngClass]="{'bg_primary': menuSelectedOption == menuptions.RESTRUCTED_FOLDER}">
                               {{menuptions.RESTRICTED_FOLDER}}</mat-list-item>
                     </a>
+                    <a (click)="menuSelectedOption=menuptions.RLATIONSHIP_FOLDER" class="cursor-pointer">
+                         <mat-list-item role="listitem"  class="border_bottom"
+                              [ngClass]="{'bg_primary': menuSelectedOption == menuptions.RLATIONSHIP_FOLDER}">
+                              {{menuptions.RLATIONSHIP_FOLDER}}</mat-list-item>
+                    </a>
+                    
                </mat-list>
           </div>
 
           <div class="col-sm-9 ml-3 card mb-5" *ngIf="menuSelectedOption !=''">
                <div *ngIf="menuSelectedOption == menuptions.PITCH_CREATION">
                     <app-pitchcreation></app-pitchcreation>
+               </div>
+               <div *ngIf="menuSelectedOption == menuptions.RLATIONSHIP_FOLDER">
+                    <app-relationshipcreation></app-relationshipcreation>
                </div>
           </div>
 

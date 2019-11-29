@@ -40,5 +40,6 @@ export enum MenuOptions {
   PITCH_CREATION = "Pitch Creation",
   STANDARD_FOLDER = "Standard Folder",
   CREDIT_TRANSACTION_FOLDER = "Credit Trasaction Folder",
-  RESTRICTED_FOLDER="Restricted folder"
+  RESTRICTED_FOLDER="Restricted Folder",
+  RLATIONSHIP_FOLDER="Relationship Creation Folder"
 }
