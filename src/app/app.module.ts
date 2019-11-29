@@ -4,6 +4,7 @@ import { NgModule ,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { TeaminformatonComponent } from './components/home/teaminformaton/teaminformaton.component';
 import { PitchcreationComponent } from './components/pitchcreation/pitchcreation.component';
 import { ListfilterPipe } from './pipes/listfilter.pipe';
+import { RelationshipcreationComponent } from './components/relationshipcreation/relationshipcreation.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { ListfilterPipe } from './pipes/listfilter.pipe';
     HomeComponent,
     TeaminformatonComponent,
     PitchcreationComponent,
-    ListfilterPipe
+    ListfilterPipe,
+    RelationshipcreationComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { ListfilterPipe } from './pipes/listfilter.pipe';
     HttpClientModule,
     AppRoutingModule,
     MaterialModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    AngularMultiSelectModule
   ],
   entryComponents:[TeaminformatonComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
