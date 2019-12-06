@@ -15,6 +15,7 @@ import { TeaminformatonComponent } from './components/home/teaminformaton/teamin
 import { PitchcreationComponent } from './components/pitchcreation/pitchcreation.component';
 import { ListfilterPipe } from './pipes/listfilter.pipe';
 import { RelationshipcreationComponent } from './components/relationshipcreation/relationshipcreation.component';
+import { CredittransactionComponent } from './components/credittransaction/credittransaction.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RelationshipcreationComponent } from './components/relationshipcreation
     TeaminformatonComponent,
     PitchcreationComponent,
     ListfilterPipe,
-    RelationshipcreationComponent
+    RelationshipcreationComponent,
+    CredittransactionComponent
   ],
   imports: [
     BrowserModule,
