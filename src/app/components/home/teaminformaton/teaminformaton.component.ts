@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-teaminformaton',
@@ -14,42 +14,42 @@ export class TeaminformatonComponent implements OnInit {
   private destination:any=[];
   private filteredSource:any=[];
   private searchText:any='';
-  source:any[] = [
-    {
-      Name: 'James, Smith',
-      Value: 'James, Smith'
-    },
-    {
-      Name: 'Maria, Rodriguez',
-      Value: 'Maria, Rodriguez'
-    },
-    {
-      Name: 'James, Johnson',
-      Value: 'James, Johnson'
-    },
-    {
-      Name: 'Robert, Smith',
-      Value: 'Robert, Smith'
-    },
-    {
-      Name: 'Maria, Martinez',
-      Value: 'Maria, Martinez'
-    },
-    {
-      Name: 'IndusDavid, Smithtrial',
-      Value: 'David, Smith'
-    },
-    {
-      Name: 'Juan, Carlos',
-      Value: 'Juan, Carlos'
-    },
-    {
-      Name: 'Mike, Jones',
-      Value: 'Mike, Jones'
-    }
+  // source:any[] = [
+  //   {
+  //     Name: 'James, Smith',
+  //     Value: 'James, Smith'
+  //   },
+  //   {
+  //     Name: 'Maria, Rodriguez',
+  //     Value: 'Maria, Rodriguez'
+  //   },
+  //   {
+  //     Name: 'James, Johnson',
+  //     Value: 'James, Johnson'
+  //   },
+  //   {
+  //     Name: 'Robert, Smith',
+  //     Value: 'Robert, Smith'
+  //   },
+  //   {
+  //     Name: 'Maria, Martinez',
+  //     Value: 'Maria, Martinez'
+  //   },
+  //   {
+  //     Name: 'IndusDavid, Smithtrial',
+  //     Value: 'David, Smith'
+  //   },
+  //   {
+  //     Name: 'Juan, Carlos',
+  //     Value: 'Juan, Carlos'
+  //   },
+  //   {
+  //     Name: 'Mike, Jones',
+  //     Value: 'Mike, Jones'
+  //   }
 
-  ]
-  constructor(public dialogRef: MatDialogRef<TeaminformatonComponent>){
+  // ]
+  constructor(public dialogRef: MatDialogRef<TeaminformatonComponent>,@Inject(MAT_DIALOG_DATA) public source: any){
 
   }
   ngOnInit(){
