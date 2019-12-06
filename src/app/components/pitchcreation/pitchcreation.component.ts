@@ -295,7 +295,6 @@ this.clientNameSearchCtrl.valueChanges.pipe(takeUntil(this._onDestroy)).subscrib
     console.log(items);
   }
   CPL1OnChange(val){
-    debugger
 this.filteredCPL2=this.cpl2Json.filter(x=> x.Base == val);
   }
   
@@ -307,7 +306,6 @@ this.filteredCPL2=this.cpl2Json.filter(x=> x.Base == val);
   }
   cplKeyPress(event,index,name)
   {
-    debugger
     if(name == 'CPL1')
     this.productInfoForm.controls[index]['value'].CPL1='';
     else
@@ -340,7 +338,6 @@ this.filteredCPL2=this.cpl2Json.filter(x=> x.Base == val);
     this.productInfoForm.removeAt(index);
   }
   removeAllProductInfoForm(){
-    debugger
     for(var i=this.productInfoForm.length-1 ; i>= 0 ; i--)
     {
       this.productInfoForm.removeAt(i);
@@ -386,7 +383,6 @@ this.filteredCPL2=this.cpl2Json.filter(x=> x.Base == val);
     this.pitchSpinnerButtonOptions.active = true;
     alert(JSON.stringify(this.pitchCreationForm.value));
     this.pitchService.createpitch(this.pitchCreationForm.value).subscribe(result=>{
-      debugger
       this.snackBarService.message="Pitch creation successfully created."
 
       this.snackBarService.showSnackbar();
@@ -424,6 +420,7 @@ this.filteredCPL2=this.cpl2Json.filter(x=> x.Base == val);
   openDialog(): void {
     const dialogRef = this.dialog.open(TeaminformatonComponent, {
       width: '60%',
+      data:this.teamInfoJson
     });
 
     dialogRef.afterClosed().subscribe(result => {

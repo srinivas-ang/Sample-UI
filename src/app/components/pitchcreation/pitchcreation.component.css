@@ -9,6 +9,9 @@
     color: #7e7f80;
     font-size: 14px;
 }
+::ng-deep .clear-all c-icon{
+    display: none !important;;
+}
 ::ng-deep .dropdown-list ul li {
     padding: 5px !important;
 }
