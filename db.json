@@ -978,6 +978,324 @@
       "RelationshipType": "Inactive",
       "CBGVerical": "Gaming",
       "id": 47
+    },
+    {
+      "RelationshipName": "dfsdf",
+      "CoverageTeam": "James, Smith",
+      "RelationshipType": "Prospect",
+      "CBGVerical": "Customer & Retail",
+      "id": 48
+    },
+    {
+      "RelationshipName": "sgfgf",
+      "CoverageTeam": "Maria, Rodriguez",
+      "RelationshipType": "Prospect",
+      "CBGVerical": "Energy & Power",
+      "id": 49
+    },
+    {
+      "RelationshipName": "dsfdfd",
+      "CoverageTeam": "Maria, Rodriguez",
+      "RelationshipType": "Prospect",
+      "CBGVerical": "Customer & Retail",
+      "id": 50
+    },
+    {
+      "RelationshipName": "asds",
+      "CoverageTeam": "James, Smith",
+      "RelationshipType": "Prospect",
+      "CBGVerical": "Customer & Retail",
+      "id": 51
+    },
+    {
+      "clientId": "0",
+      "clientName": "srinivas",
+      "creationUserName": "u364882",
+      "dctmClientId": null,
+      "ibParent": "Targa Energy Power",
+      "ibParentId": "5572",
+      "icisClientId": "233536503",
+      "industry": "Customer & Retail",
+      "industryKey": "E&P",
+      "subIndustry": "Energy",
+      "subIndustryKey": "ENGY",
+      "region": "",
+      "sector": "Midstream",
+      "parentRelationship": null,
+      "relationshipManager": null,
+      "portfolioManager": null,
+      "relationshipAssociate": null,
+      "subSector": "Liquids Gathering, Logistics, Terminaling & Storage",
+      "loadSupervisor": null,
+      "callingApplication": "CIB",
+      "targetApplication": "IBCM",
+      "isDeleted": "N",
+      "CreatedDate": "11/4/2019 10:50:12 AM",
+      "LastModifiedDate": null,
+      "LastModifiedById": null,
+      "subSectorKey": "",
+      "sectorKey": "",
+      "id": 52
+    },
+    {
+      "clientId": "0",
+      "clientName": "Credit transaction",
+      "creationUserName": "u364882",
+      "dctmClientId": null,
+      "ibParent": "Targa Energy Power",
+      "ibParentId": "5572",
+      "icisClientId": "233536503",
+      "industry": "Customer & Retail",
+      "industryKey": "E&P",
+      "subIndustry": "Energy",
+      "subIndustryKey": "ENGY",
+      "region": "",
+      "sector": "Midstream",
+      "parentRelationship": null,
+      "relationshipManager": null,
+      "portfolioManager": null,
+      "relationshipAssociate": null,
+      "subSector": "Liquids Gathering, Logistics, Terminaling & Storage",
+      "loadSupervisor": null,
+      "callingApplication": "CIB",
+      "targetApplication": "IBCM",
+      "isDeleted": "N",
+      "CreatedDate": "11/4/2019 10:50:12 AM",
+      "LastModifiedDate": null,
+      "LastModifiedById": null,
+      "subSectorKey": "",
+      "sectorKey": "",
+      "id": 53
+    },
+    {
+      "clientId": "0",
+      "clientName": "jhgghgj",
+      "creationUserName": "u364882",
+      "dctmClientId": null,
+      "ibParent": "Targa Energy Power",
+      "ibParentId": "5572",
+      "icisClientId": "233536503",
+      "industry": "Customer & Retail",
+      "industryKey": "E&P",
+      "subIndustry": "Energy",
+      "subIndustryKey": "ENGY",
+      "region": "",
+      "sector": "Midstream",
+      "parentRelationship": null,
+      "relationshipManager": null,
+      "portfolioManager": null,
+      "relationshipAssociate": null,
+      "subSector": "Liquids Gathering, Logistics, Terminaling & Storage",
+      "loadSupervisor": null,
+      "callingApplication": "CIB",
+      "targetApplication": "IBCM",
+      "isDeleted": "N",
+      "CreatedDate": "11/4/2019 10:50:12 AM",
+      "LastModifiedDate": null,
+      "LastModifiedById": null,
+      "subSectorKey": "",
+      "sectorKey": "",
+      "id": 54
+    }
+  ],
+  "getSubIndustry": [
+    {
+      "Name": "Energy",
+      "Value": "Energy"
+    },
+    {
+      "Name": "Consumer Products",
+      "Value": "Consumer Products"
+    }
+  ],
+  "getCreditClientNames": [
+    {
+      "Name": "888 US, Inc.",
+      "Value": "888 US, Inc."
+    },
+    {
+      "Name": "Accel Gaming",
+      "Value": "Accel Gaming"
+    },
+    {
+      "Name": "Accent Inc.",
+      "Value": "Accent Inc."
+    },
+    {
+      "Name": "Affinity Gaming",
+      "Value": "Affinity Gaming"
+    },
+    {
+      "Name": "American Racing & Entertainment, LLC",
+      "Value": "American Racing & Entertainment, LLC"
+    },
+    {
+      "Name": "American Casino & Entertainment Properties LLC",
+      "Value": "American Casino & Entertainment Properties LLC"
+    },
+    {
+      "Name": "Ak-Chin Indian Community Development Corporation",
+      "Value": "Ak-Chin Indian Community Development Corporation"
+    }
+  ],
+  "getCreditTransactionReportTypes": [
+    {
+      "Name": "AQR Change",
+      "Value": "AQR Change"
+    },
+    {
+      "Name": "FCRR",
+      "Value": "FCRR"
+    },
+    {
+      "Name": "FCRN",
+      "Value": "FCRN"
+    },
+    {
+      "Name": "ICR",
+      "Value": "ICR"
+    },
+    {
+      "Name": "NBR",
+      "Value": "NBR"
+    },
+    {
+      "Name": "PSU-PLR",
+      "Value": "PSU-PLR"
+    },
+    {
+      "Name": "Screening Memo",
+      "Value": "Screening Memo"
+    },
+    {
+      "Name": "Other Credit Action",
+      "Value": "Other Credit Action"
+    }
+  ],
+  "getCreditCPL1": [
+    {
+      "Name": "Asset Management",
+      "Value": "Asset Management"
+    },
+    {
+      "Name": "Credit",
+      "Value": "Credit"
+    },
+    {
+      "Name": "Deposits",
+      "Value": "Deposits"
+    },
+    {
+      "Name": "Foreign Exchange",
+      "Value": "Foreign Exchange"
+    },
+    {
+      "Name": "Insurance",
+      "Value": "Insurance"
+    },
+    {
+      "Name": "Non Product Specific",
+      "Value": "Non Product Specific"
+    },
+    {
+      "Name": "Trade Finance",
+      "Value": "Trade Finance"
+    },
+    {
+      "Name": "Treasury Management",
+      "Value": "Treasury Management"
+    },
+    {
+      "Name": "Trust & Servicing",
+      "Value": "Trust & Servicing"
+    },
+    {
+      "Name": "Wealth & Consumer",
+      "Value": "Wealth & Consumer"
+    }
+  ],
+  "getCreditCPL2": [
+    {
+      "Name": "ABF Sales and Trading",
+      "Value": "ABF Sales and Trading",
+      "Base": "Asset Management"
+    },
+    {
+      "Name": "Cleaning & Execution Services",
+      "Value": "Cleaning & Execution Services",
+      "Base": "Asset Management"
+    },
+    {
+      "Name": "Commodities Sales and Trading",
+      "Value": "Commodities Sales and Trading",
+      "Base": "Asset Management"
+    },
+    {
+      "Name": "Credit Sales and Trading",
+      "Value": "Credit Sales and Trading",
+      "Base": "Credit"
+    },
+    {
+      "Name": "Equity Sales and Trading",
+      "Value": "Equity Sales and Trading",
+      "Base": "Credit"
+    },
+    {
+      "Name": "Lines of Credit",
+      "Value": "Lines of Credit",
+      "Base": "Credit"
+    },
+    {
+      "Name": "Investment Solutions",
+      "Value": "Investment Solutions",
+      "Base": "Deposits"
+    },
+    {
+      "Name": "Prime Solutions",
+      "Value": "Prime Solutions",
+      "Base": "Deposits"
+    },
+    {
+      "Name": "Principal Investments",
+      "Value": "Principal Investments",
+      "Base": "Deposits"
+    },
+    {
+      "Name": "Rates Sales and Trading",
+      "Value": "Rates Sales and Trading",
+      "Base": "Foreign Exchange"
+    },
+    {
+      "Name": "Public Finance Sales and Trading",
+      "Value": "Public Finance Sales and Trading",
+      "Base": "Foreign Exchange"
+    },
+    {
+      "Name": "Hedge Fund Administration",
+      "Value": "Hedge Fund Administration",
+      "Base": "Foreign Exchange"
+    }
+  ],
+  "getCreditTransactionTeams": [
+    {
+      "Name": "Bussiness Administrator",
+      "Value": "Bussiness Administrator"
+    },
+    {
+      "Name": "C&R Admin Support",
+      "Value": "C&R Admin Support"
+    },
+    {
+      "Name": "C&R Banker",
+      "Value": "C&R Banker"
+    },
+    {
+      "Name": "C&R CAO 6188_Test",
+      "Value": "C&R CAO 6188_Test"
+    },
+    {
+      "Name": "C&R Group Head",
+      "Value": "C&R Group Head"
     }
   ]
 }
