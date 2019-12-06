@@ -5,13 +5,13 @@
         </div>
         <div class=" mx-4 mt-2">
             <mat-form-field class="w-100 ">
-                <input type="text" formControlName="RelationshipName" matInput placeholder="Relationship Name" required>
+                <input type="text" formControlName="ClientName" matInput placeholder="Client Name" required>
             </mat-form-field>
             <div class="text-danger"
-                *ngIf="f.RelationshipName.invalid && f.RelationshipName.errors.required && isSubmitted">
-                Relationship Name Required.
+                *ngIf="f.ClientName.invalid && f.ClientName.errors.required && isSubmitted">
+                Client Name Required.
             </div>
-            <mat-form-field class="w-100">
+            <!-- <mat-form-field class="w-100">
                 <mat-label>Select Coverage Team</mat-label>
                 <mat-select formControlName="CoverageTeam" [multiple]="false" required>
                     <mat-option>
@@ -45,30 +45,48 @@
             <div class="text-danger"
                 *ngIf="f.RelationshipType.invalid && f.RelationshipType.errors.required && isSubmitted">
                 Relationship type Required.
-            </div>
+            </div> -->
         </div>
         <div class="bg-light card p-2 font-weight-bold">
             Industry Details
         </div>
         <div class=" mx-4 mt-2">
             <mat-form-field class="w-100">
-                <mat-label>Select CGB Vertical</mat-label>
-                <mat-select formControlName="CBGVerical" [multiple]="false" required>
+                <mat-label>Select Industry</mat-label>
+                <mat-select formControlName="Industry" [multiple]="false" required>
                     <mat-option>
                         <ngx-mat-select-search [placeholderLabel]="'Search cgb vertical'"
-                            [formControl]="cgbVerticalSearchCtrl" [noEntriesFoundLabel]="'no matching team found'">
+                            [formControl]="idustrySearchCtrl" [noEntriesFoundLabel]="'no matching Industry'">
                         </ngx-mat-select-search>
                     </mat-option>
-                    <mat-option *ngFor="let item of cgbVerticalJSON | listfilter:cgbverticalSearchText "
+                    <mat-option *ngFor="let item of idustryJSON | listfilter:idustrySearchText "
                         [value]="item.Value">
                         {{item.Name}}
                     </mat-option>
                 </mat-select>
 
             </mat-form-field>
-            <mat-error  *ngIf="f.CBGVerical.invalid && f.CBGVerical.errors.required && isSubmitted">
-                Relationship type Required.
+            <mat-error  *ngIf="f.Industry.invalid && f.Industry.errors.required && isSubmitted">
+                Industry Required.
             </mat-error>
+            <mat-form-field class="w-100">
+                <mat-label>Select Sub-Industry</mat-label>
+                <mat-select formControlName="SubIndustry" [multiple]="false" required>
+                    <mat-option>
+                        <ngx-mat-select-search [placeholderLabel]="'Search Sub Industry'"
+                            [formControl]="subIndustrySearchCtrl" [noEntriesFoundLabel]="'no matching Sub Industry'">
+                        </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let item of subIndustryInfoJSON | listfilter:subIndustrySearchText "
+                        [value]="item.Value">
+                        {{item.Name}}
+                    </mat-option>
+                </mat-select>
+
+            </mat-form-field>
+            <div class="text-danger" *ngIf="f.SubIndustry.invalid && f.SubIndustry.errors.required && isSubmitted">
+                Sub-Industry Required.
+            </div>
         </div>
         <div class="mt-2 mx-0">
                 <mat-spinner-button style="border-radius: 5px" class="mb-4 text-left  bg_primary float-right" [options]="relationSpinnerButtonOptions" (btnClick)="createRelationship(myForm)"></mat-spinner-button>

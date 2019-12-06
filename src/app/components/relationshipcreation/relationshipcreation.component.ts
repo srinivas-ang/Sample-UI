@@ -16,14 +16,25 @@ export class RelationshipcreationComponent implements OnInit {
 
   relationshipForm: FormGroup;
   public coverageteamSearchCtrl:FormControl=new FormControl();
-  public cgbVerticalSearchCtrl:FormControl=new FormControl();
+  public idustrySearchCtrl:FormControl=new FormControl();
+  public subIndustrySearchCtrl:FormControl=new FormControl()
   
   coverageTeamSearchText:any='';
-  cgbverticalSearchText:any='';
+  idustrySearchText:any='';
+  subIndustrySearchText:any='';
   protected _onDestroy = new Subject<void>();
   coverageTeamInfoJSON:any;
-  cgbVerticalJSON:any;
+  idustryJSON:any;
   isSubmitted:boolean=false;
+  subIndustryInfoJSON:any;
+  // =[
+  //   {
+  //     Name:"Energy",Value:"Energy"
+  //   },
+  //   {
+  //     Name:"Consumer Products",Value:"Consumer Products"
+  //   }
+  // ]
   relationSpinnerButtonOptions: MatProgressButtonOptions = {
     active: false,
     text: 'Submit',
@@ -44,11 +55,16 @@ export class RelationshipcreationComponent implements OnInit {
     this.coverageteamSearchCtrl.valueChanges.pipe(takeUntil(this._onDestroy)).subscribe(()=>{
       this.coverageTeamSearchText = this.coverageteamSearchCtrl.value;
     });
-    this.cgbVerticalSearchCtrl.valueChanges.pipe(takeUntil(this._onDestroy)).subscribe(()=>{
-      this.cgbverticalSearchText = this.cgbVerticalSearchCtrl.value;
+    this.idustrySearchCtrl.valueChanges.pipe(takeUntil(this._onDestroy)).subscribe(()=>{
+      this.idustrySearchText = this.idustrySearchCtrl.value;
     });
+    this.subIndustrySearchCtrl.valueChanges.pipe(takeUntil(this._onDestroy)).subscribe(()=>{
+      this.subIndustrySearchText = this.subIndustrySearchCtrl.value;
+    });
+    
     this.getCoverageTeamInfo();
-    this.getCGBVerticalInfo()
+    this.getIdustryInfo();
+    this.getSubIndustryInfo();
   }
 
   get f(){
@@ -56,10 +72,11 @@ export class RelationshipcreationComponent implements OnInit {
   }
 initializeForm(){
   this.relationshipForm = this.formBuilder.group({
-    RelationshipName: new FormControl('', Validators.required),
-    CoverageTeam: new FormControl('', Validators.required),
-    RelationshipType: new FormControl('', Validators.required),
-    CBGVerical: new FormControl('', Validators.required),
+    ClientName: new FormControl('', Validators.required),
+    // CoverageTeam: new FormControl('', Validators.required),
+    // RelationshipType: new FormControl('', Validators.required),
+    Industry: new FormControl('', Validators.required),
+    SubIndustry:new FormControl('',Validators.required)
   });
 }
   getCoverageTeamInfo(){
@@ -67,9 +84,14 @@ this.relationshipService.getCoverageTeamInfo().subscribe(result=>{
 this.coverageTeamInfoJSON=result;
 });
   }
-  getCGBVerticalInfo(){
+  getIdustryInfo(){
     this.relationshipService.getIndustryDetails().subscribe(result=>{
-      this.cgbVerticalJSON=result;
+      this.idustryJSON=result;
+    })
+  }
+  getSubIndustryInfo(){
+    this.relationshipService.getSubIndustryDetails().subscribe(result=>{
+      this.subIndustryInfoJSON=result;
     })
   }
   createRelationship(form: NgForm){
@@ -79,11 +101,41 @@ this.coverageTeamInfoJSON=result;
       this.relationshipForm.markAllAsTouched();
       return;
     }
+    var obj={
+      clientId:"0",
+      clientName:this.f['ClientName'].value,
+      creationUserName:"u364882",
+      dctmClientId:null,
+      ibParent:"Targa Energy Power",
+      ibParentId:"5572",
+      icisClientId:"233536503",
+      industry:this.f['Industry'].value,
+      industryKey:"E&P",
+      subIndustry:this.f['SubIndustry'].value,
+      subIndustryKey:"ENGY",
+      region:"",
+      sector:"Midstream",
+      parentRelationship:null,
+      relationshipManager:null,
+      portfolioManager:null,
+      relationshipAssociate:null,
+      subSector:"Liquids Gathering, Logistics, Terminaling & Storage",
+      loadSupervisor:null,
+      callingApplication:"CIB",
+      targetApplication:"IBCM",
+      isDeleted:"N",
+      CreatedDate:"11/4/2019 10:50:12 AM",
+      LastModifiedDate:null,
+      LastModifiedById:null,
+      subSectorKey:"",
+      sectorKey:""
+    }
     this.relationSpinnerButtonOptions.active=true;
-    this.relationshipService.createRelationship(this.relationshipForm.value).subscribe(result=>{
+    this.relationshipService.createRelationship(obj).subscribe(result=>{
+      debugger
       this.isSubmitted=false;
       this.relationSpinnerButtonOptions.active=false;
-      this.snackbarService.message="Pitch creation successfully created."
+      this.snackbarService.message="Relationship creation successfully created."
       this.snackbarService.showSnackbar();
       form.resetForm();
     
