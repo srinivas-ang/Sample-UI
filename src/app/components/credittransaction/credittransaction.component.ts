@@ -3,8 +3,9 @@ import { FormGroup, FormBuilder, FormControl, Validators, FormArray, NgForm } fr
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { MatRadioChange } from '@angular/material';
+import { MatRadioChange, MatDialog } from '@angular/material';
 import { CredittransactionService } from 'src/app/services/credittransaction.service';
+import { TeaminformatonComponent } from '../home/teaminformaton/teaminformaton.component';
 
 @Component({
   selector: 'app-credittransaction',
@@ -33,6 +34,21 @@ export class CredittransactionComponent implements OnInit {
     enableSearchFilter: true,
     classes: "myclass custom-class"
   };
+  pitchSpinnerButtonOptions: MatProgressButtonOptions = {
+    active: false,
+    text: 'Submit',
+    spinnerSize: 18,
+    raised: true,
+    stroked: false,
+    buttonColor: 'primary',
+    spinnerColor: 'accent',
+    fullWidth: false,
+    disabled: false,
+    mode: 'indeterminate',
+    // buttonIcon: {
+    //   fontIcon: 'add'
+    // }
+  }
   protected _onDestroy = new Subject<void>();
 
   teamInfoJson: any = [];
@@ -42,7 +58,8 @@ export class CredittransactionComponent implements OnInit {
   reportTypesJson: any = [];
   clientNamesJson: any = [];
   industryJson: any = [];
-  constructor(private formBuilder: FormBuilder, private creditTransactionservice: CredittransactionService) {
+  selectedCRTeamInfo:any=''
+  constructor(public dialog: MatDialog,private formBuilder: FormBuilder, private creditTransactionservice: CredittransactionService) {
     this.creditTransactionservice.getIndustryDetails().subscribe(result => {
       this.industryJson = result;
     });
@@ -131,6 +148,7 @@ export class CredittransactionComponent implements OnInit {
 
   }
   CPL1OnChange(val) {
+    debugger
     this.filteredCPL2 = this.cpl2Json.filter(x => x.Base == val);
   }
   radioChange($event: MatRadioChange) {
@@ -148,6 +166,7 @@ export class CredittransactionComponent implements OnInit {
   createCreditTransaction(form: NgForm) {
 
     if (this.creditTransactionForm.invalid) {
+      this.isSubmitted = true;
       this.creditTransactionForm.markAllAsTouched();
       // (<any>Object).values(this.f).forEach(control => {
       //   debugger
@@ -156,11 +175,37 @@ export class CredittransactionComponent implements OnInit {
       // this.checkProductFormValidations();
       return;
     }
-    this.isSubmitted = true;
+   
     alert(JSON.stringify(this.creditTransactionForm.value));
     this.isSubmitted = false;
     form.resetForm();
     this.initform();
+  }
+  clearAdditionalTeamInfo()
+  {
+    this.f.AdditionalTeamInfo.setValue('');
+  }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(TeaminformatonComponent, {
+      width: '60%',
+      data:this.teamInfoJson
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.selectedTeamInfo = result;
+      
+      if(result != null && result.length > 0){
+        this.selectedCRTeamInfo='';
+      result.forEach(element => {
+        // this.selectedTeamInfo+=element.Name + ', ';
+         this.selectedCRTeamInfo +=element.Name+ '\n' + '\n';
+      });
+      this.f["AdditionalTeamInfo"].setValue(this.selectedCRTeamInfo);
+    }
+     
+    });
+
   }
 
 }

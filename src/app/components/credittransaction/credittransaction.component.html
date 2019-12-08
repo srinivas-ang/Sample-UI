@@ -159,7 +159,7 @@
                                     </angular2-multiselect>
 
 
-                                    <div class="text-danger" *ngIf="f.TeamInfo.invalid  && isSubmitted">
+                                    <div class="text-danger" *ngIf="f.TeamInfo.invalid  && (f.TeamInfo.touched || isSubmitted)">
                                         TeamInfo Required.
                                     </div>
                                 </div>
@@ -234,13 +234,13 @@
                     </fieldset>
                 </div>
                 <div class="mr-2 mb-5">
-                    {{isSubmitted}}
-                    	<button mat-raised-button  class=" bg_primary float-right" (click)="createCreditTransaction(myForm)">
+                    <!-- {{isSubmitted}} -->
+                    	<!-- <button mat-raised-button  class=" bg_primary float-right" (click)="createCreditTransaction(myForm)">
                                 <mat-icon *ngIf="isSubmitted"><mat-spinner color="accent" diameter="20" >
                         </mat-spinner></mat-icon>Submit
-                      </button>
-                    <!-- <mat-spinner-button style="border-radius: 5px" class="text-left  bg_primary float-right"
-                        [options]="pitchSpinnerButtonOptions" (btnClick)="createResource(myForm)"></mat-spinner-button> -->
+                      </button> -->
+                    <mat-spinner-button style="border-radius: 5px" class="text-left  bg_primary float-right"
+                        [options]="pitchSpinnerButtonOptions" (btnClick)="createCreditTransaction(myForm)"></mat-spinner-button>
                 </div>
             </form>
         </div>
