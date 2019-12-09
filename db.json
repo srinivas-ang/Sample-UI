@@ -1297,5 +1297,46 @@
       "Name": "C&R Group Head",
       "Value": "C&R Group Head"
     }
+  ],
+  "createCreditTransaction": [
+    {
+      "CreditActionName": "deddd",
+      "CreditActionDate": "2019-12-08T18:30:00.000Z",
+      "Industry": "Customer & Retail",
+      "ClientName": "888 US, Inc.",
+      "ReportType": "NBR",
+      "ProductInfo": [
+        {
+          "CPL1": "Asset Management",
+          "CPL2": "ABF Sales and Trading"
+        },
+        {
+          "CPL1": "Deposits",
+          "CPL2": "Investment Solutions"
+        },
+        {
+          "CPL1": "Foreign Exchange",
+          "CPL2": "Rates Sales and Trading"
+        }
+      ],
+      "TeamInfo": [
+        {
+          "Name": "C&R Banker",
+          "Value": "C&R Banker"
+        },
+        {
+          "Name": "C&R Admin Support",
+          "Value": "C&R Admin Support"
+        },
+        {
+          "Name": "Bussiness Administrator",
+          "Value": "Bussiness Administrator"
+        }
+      ],
+      "AdditionalTeamInfo": "Bussiness Administrator\n\nC&R Admin Support\n\n",
+      "IsLegalExeDocs": "true",
+      "FolderName": "srinivas ch",
+      "id": 1
+    }
   ]
 }
