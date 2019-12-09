@@ -7,6 +7,8 @@ import { MatRadioChange, MatDialog } from '@angular/material';
 import { CredittransactionService } from 'src/app/services/credittransaction.service';
 import { TeaminformatonComponent } from '../home/teaminformaton/teaminformaton.component';
 
+import { SnackbarService } from 'src/app/services/snackbar.service';
+
 @Component({
   selector: 'app-credittransaction',
   templateUrl: './credittransaction.component.html',
@@ -59,7 +61,7 @@ export class CredittransactionComponent implements OnInit {
   clientNamesJson: any = [];
   industryJson: any = [];
   selectedCRTeamInfo:any=''
-  constructor(public dialog: MatDialog,private formBuilder: FormBuilder, private creditTransactionservice: CredittransactionService) {
+  constructor(private snackBarService:SnackbarService, public dialog: MatDialog,private formBuilder: FormBuilder, private creditTransactionservice: CredittransactionService) {
     this.creditTransactionservice.getIndustryDetails().subscribe(result => {
       this.industryJson = result;
     });
@@ -175,11 +177,19 @@ export class CredittransactionComponent implements OnInit {
       // this.checkProductFormValidations();
       return;
     }
-   
-    alert(JSON.stringify(this.creditTransactionForm.value));
+    
+    this.creditTransactionservice.createCreditTransaction(this.creditTransactionForm.value).subscribe(result => {
+      // alert(JSON.stringify(this.creditTransactionForm.value));
+      this.snackBarService.message="Credit transaction successfully created."
+
+      this.snackBarService.showSnackbar();
+      this.pitchSpinnerButtonOptions.active = false;
     this.isSubmitted = false;
     form.resetForm();
     this.initform();
+    });
+   
+    
   }
   clearAdditionalTeamInfo()
   {
