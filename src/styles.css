@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
-body{
+/* body{
     font-size: 16px !important;
     font-family: 'Roboto'
-}
+} */
 .btn-primary {
     color: #fff;
     background-color: #673ab7 !important;
@@ -16,26 +16,26 @@ body{
 .cursor-pointer{
 cursor: pointer;
 }
-.bg_primary{
+/* .bg_primary{
     background: maroon !important;
     color: gold !important;
-}
+} */
 .width_20em{
     width: 20em !important;
 }
 /* .mat-primary {
     background-color: maroon !important;
 } */
-.mat-raised-button.mat-primary {
+/* .mat-raised-button.mat-primary {
     background-color: maroon !important;
 }
 .mat-button.mat-button-base.mat-primary.mat-raised-button{
     color: gold !important
-      }
+      } */
 
 
 /* theme changes for input types start */
-.mat-form-field.mat-focused .mat-form-field-ripple{
+/* .mat-form-field.mat-focused .mat-form-field-ripple{
     background-color: maroon  !important;
 }
 .mat-form-field.mat-focused .mat-form-field-prefix{
@@ -46,7 +46,7 @@ cursor: pointer;
 }
 .mat-form-field.mat-focused .mat-form-field-outline.mat-form-field-outline-thick{
     color: maroon  !important;
-}
+} */
 /* theme changes for input types end */
 
 
@@ -64,3 +64,7 @@ margin-top:5px !important;
     background-color: #98FB98 !important;
     color: black !important;
 }
+.mat-row:hover {
+    background-color: rgba(0, 0, 0, .05);
+    /* cursor: pointer; */
+  }

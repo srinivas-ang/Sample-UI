@@ -1,4 +1,103 @@
 @import '~@angular/material/theming';
+$bgcolor-maroon :maroon !important;
+$color-maroon:maroon !important;
+$color-gold:gold !important;
 
-$custom-typography: mat-typography-config($font-family: 'Roboto');
-@include mat-core($custom-typography);
+// $custom-typography: mat-typography-config($font-family: 'Roboto');
+// @include mat-core($custom-typography);
+.bg_primary{
+    background: $bgcolor-maroon;
+    color: $color-gold;
+}
+.mat-raised-button.mat-primary {
+    background-color: $bgcolor-maroon;
+}
+.mat-button.mat-button-base.mat-primary.mat-raised-button{
+    color: $color-gold;
+      }
+
+/* theme changes for input types start */
+.mat-form-field.mat-focused .mat-form-field-ripple{
+    background-color: $bgcolor-maroon;
+}
+.mat-form-field.mat-focused .mat-form-field-prefix{
+    color: $color-maroon;
+}
+.mat-form-field.mat-focused .mat-form-field-label{
+    color:$color-maroon;
+}
+.mat-form-field.mat-focused .mat-form-field-outline.mat-form-field-outline-thick{
+    color:$color-maroon;
+}
+/* theme changes for input types end */
+
+/* multi select dropdown style changes start   reflected on pitch creation, credit transaction*/ 
+  .clear-all c-icon{
+    display: none !important;;
+}
+  .dropdown-list ul li {
+    padding: 5px !important;
+} 
+  .dropdown-list ul li {
+    padding: 5px !important;
+}
+ .pure-checkbox input[type="checkbox"]:checked + label:before {
+    background:$bgcolor-maroon;
+}
+ .selected-list .c-list .c-token {
+    background: $bgcolor-maroon;
+}
+ .pure-checkbox input[type="checkbox"] + label:before {
+    color: $color-maroon;
+    border-color: $color-maroon;
+}
+/* multi select dropdown style changes start*/
+
+/* material tabs style changes start affected in home component*/
+  .mat-tab-group {
+    flex-direction: row;
+}
+  .mat-tab-header {
+  border-bottom: none;
+}
+  .mat-tab-header-pagination {
+    display: none !important;
+}
+  .mat-tab-labels {
+    flex-direction: column;
+}
+  .mat-ink-bar {
+    height: 100%;
+    left: 98% !important;
+}
+  .mat-tab-body-wrapper {
+    flex: 1 1 auto;
+}
+  .mat-tab-list{
+    border-right:$color-maroon 2px solid !important;
+}
+  .mat-tab-label{
+    background-color: white !important;
+    font-weight: bold !important;
+    /* border-right: maroon 2px solid !important; */
+}
+  .mat-tab-label-active{
+    
+    opacity: unset !important;
+    background-color:$bgcolor-maroon;
+    color: $color-gold;
+}
+
+.mat-list-item:hover {
+    background-color: #dfdfdf;
+}
+/* material tabs style changes start affected in home component*/
+
+/* radio button style changes start*/
+.mat-radio-button.mat-primary.mat-radio-checked .mat-radio-outer-circle {
+    border-color: $color-maroon;
+}
+.mat-radio-button.mat-primary .mat-radio-inner-circle, .mat-radio-button.mat-primary .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-primary.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-primary:active .mat-radio-persistent-ripple {
+    background-color: $bgcolor-maroon;
+}
+/* radio button style changes end*/
