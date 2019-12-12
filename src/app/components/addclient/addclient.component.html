@@ -1,0 +1,93 @@
+<div>
+    <div class="row mx-0 mt-3 mb-3">
+        Can't find your client in Documentum? Please search the Salesforce Client List below or navigate to Salesforce
+        to add the Client to Documentum.
+    </div>
+    <form [formGroup]="searchForm">
+        <div class="row mx-0">
+            <div class="col-sm-8">
+                <mat-form-field class="w-100 ">
+                    <input type="text" formControlName="searchText" matInput placeholder="Enter Client Name">
+                </mat-form-field>
+
+                <div *ngIf="getSearchText.touched && getSearchText.value !='' && getSearchText.errors?.minlength"
+                    class="mb-3 text-danger">
+                    Search text must be at least 3 characters long.
+                </div>
+                <div *ngIf="(getSearchText.touched || !isValidFormSubmitted) && getSearchText.errors?.required"
+                    class="mb-3 text-danger">
+                    Search text required.
+                </div>
+            </div>
+            <div class="col-sm-4 mt-2">
+                <mat-spinner-button style="border-radius: 5px" class="text-left  bg_primary"
+                    [options]="clientSpinnerButtonOptions" (btnClick)="searchClientDetails()"></mat-spinner-button>
+            </div>
+        </div>
+    </form>
+    <div class="row mx-0  mb-5" [ngStyle]="{'display': display}">
+        <mat-table [dataSource]="searchResult" class="example-table w-100" matSort>
+            <!-- Number Column -->
+            <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef style="max-width: 7em;" class="text-white">Action</mat-header-cell>
+                <mat-cell *matCellDef="let row" style="max-width: 6em;">
+                    <mat-icon matTooltip="View" (click)="viewClienDetails()" class="cursor-pointer text-primary">remove_red_eye</mat-icon>
+                    <!-- <a href="" (click)="viewClienDetails()">View</a> -->
+                </mat-cell>
+            </ng-container>
+
+            <!-- Title Column -->
+            <ng-container matColumnDef="wcisId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="text-white">WCIS ID</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.wcisId }}</mat-cell>
+            </ng-container>
+
+            <!-- State Column -->
+            <ng-container matColumnDef="clientName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="text-white">Client Name</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.clientName }}</mat-cell>
+            </ng-container>
+
+            <!-- Created Column -->
+            <ng-container matColumnDef="Sponsor">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="text-white">
+                    Sponsor
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.Sponsor }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="tickerSymbol">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="text-white">
+                    Ticker Symbol
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.tickerSymbol }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="taxId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="text-white">
+                    Tax Id
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.taxId }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="industry">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="text-white">
+                    Industry
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.industry }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="city">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="text-white">
+                    City
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.city }}</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns" class="bg_primary " style="min-height:3em !important;border-radius: 10px;"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" style="border-radius: 10px; border: whitesmoke 1px solid;"></mat-row>
+        </mat-table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons class="container card" style="border-radius: 10px"></mat-paginator>
+    </div>
+    <div class="alert alert-warning border mx-0 text-center" *ngIf="!isDataFound">
+        <label>No records found.</label>
+    </div>
+</div>
