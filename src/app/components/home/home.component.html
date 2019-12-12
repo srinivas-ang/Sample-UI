@@ -36,10 +36,15 @@
                               {{menuptions.RLATIONSHIP_FOLDER}}</mat-list-item>
                     </a>
                     
+                    <a (click)="menuSelectedOption=menuptions.ADD_CLIENT" class="cursor-pointer">
+                         <mat-list-item role="listitem"  class="border_bottom"
+                              [ngClass]="{'bg_primary': menuSelectedOption == menuptions.ADD_CLIENT}">
+                              {{menuptions.ADD_CLIENT}}</mat-list-item>
+                    </a>
                </mat-list>
           </div>
 
-          <div class="col-sm-9 ml-3 card mb-5" *ngIf="menuSelectedOption !=''">
+          <div class="col ml-3 card" *ngIf="menuSelectedOption !=''">
                <div *ngIf="menuSelectedOption == menuptions.PITCH_CREATION">
                     <app-pitchcreation></app-pitchcreation>
                </div>
@@ -48,6 +53,9 @@
                </div>
                <div  *ngIf="menuSelectedOption == menuptions.CREDIT_TRANSACTION_FOLDER">
                     <app-credittransaction></app-credittransaction>
+               </div>
+               <div  *ngIf="menuSelectedOption == menuptions.ADD_CLIENT">
+                    <app-addclient></app-addclient>
                </div>
           </div>
 
