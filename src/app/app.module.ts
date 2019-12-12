@@ -16,6 +16,7 @@ import { PitchcreationComponent } from './components/pitchcreation/pitchcreation
 import { ListfilterPipe } from './pipes/listfilter.pipe';
 import { RelationshipcreationComponent } from './components/relationshipcreation/relationshipcreation.component';
 import { CredittransactionComponent } from './components/credittransaction/credittransaction.component';
+import { AddclientComponent } from './components/addclient/addclient.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CredittransactionComponent } from './components/credittransaction/credi
     PitchcreationComponent,
     ListfilterPipe,
     RelationshipcreationComponent,
-    CredittransactionComponent
+    CredittransactionComponent,
+    AddclientComponent
   ],
   imports: [
     BrowserModule,
