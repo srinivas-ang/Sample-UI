@@ -28,4 +28,8 @@ getCreditTransactionTeams():Observable<any>{
   return this._http.get<any>(this.baseUrl+'getCreditTransactionTeams');
 }
 
+createCreditTransaction(data):Observable<any>{
+  return this._http.post<any>(this.baseUrl+'createCreditTransaction',data);
+}
+
 }
