@@ -12,11 +12,11 @@
 
                 <div *ngIf="getSearchText.touched && getSearchText.value !='' && getSearchText.errors?.minlength"
                     class="mb-3 text-danger">
-                    Search text must be at least 3 characters long.
+                    Client Name must be at least 3 characters long.
                 </div>
                 <div *ngIf="(getSearchText.touched || !isValidFormSubmitted) && getSearchText.errors?.required"
                     class="mb-3 text-danger">
-                    Search text required.
+                    Client Name required.
                 </div>
             </div>
             <div class="col-sm-4 mt-2">
@@ -31,7 +31,7 @@
             <ng-container matColumnDef="action">
                 <mat-header-cell *matHeaderCellDef style="max-width: 7em;" class="text-white">Action</mat-header-cell>
                 <mat-cell *matCellDef="let row" style="max-width: 6em;">
-                    <mat-icon matTooltip="View" (click)="viewClienDetails()" class="cursor-pointer text-primary">remove_red_eye</mat-icon>
+                    <mat-icon matTooltip="View" (click)="viewClienDetails(row)" class="cursor-pointer text-primary">remove_red_eye</mat-icon>
                     <!-- <a href="" (click)="viewClienDetails()">View</a> -->
                 </mat-cell>
             </ng-container>

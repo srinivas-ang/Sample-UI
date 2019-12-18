@@ -5,6 +5,8 @@ import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms'
 import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewclientComponent } from './viewclient/viewclient.component';
 
 @Component({
   selector: 'app-addclient',
@@ -38,7 +40,7 @@ export class AddclientComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort,{static: true}) sort: MatSort;
   
-  constructor(private formBuilder: FormBuilder,private salesforceClientService:AddclientService) { 
+  constructor(private formBuilder: FormBuilder,private salesforceClientService:AddclientService,public dialog: MatDialog) { 
     this.searchForm=this.formBuilder.group({
       searchText: new FormControl('', [Validators.minLength(3), Validators.required]),
     });
@@ -59,9 +61,7 @@ export class AddclientComponent implements OnInit {
   removeSearchText(){
     this.getSearchText.setValue('');
   }
-  viewClienDetails(){
-
-  }
+  
   
   searchClientDetails(){
     debugger
@@ -88,6 +88,19 @@ export class AddclientComponent implements OnInit {
       }
      
     });
+  }
+
+  viewClienDetails(data) {
+    debugger
+    const dialogRef = this.dialog.open(ViewclientComponent, {
+      width: '80%',
+      data:data
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
+
   }
 
 }
