@@ -17,6 +17,7 @@ import { ListfilterPipe } from './pipes/listfilter.pipe';
 import { RelationshipcreationComponent } from './components/relationshipcreation/relationshipcreation.component';
 import { CredittransactionComponent } from './components/credittransaction/credittransaction.component';
 import { AddclientComponent } from './components/addclient/addclient.component';
+import { ViewclientComponent } from './components/addclient/viewclient/viewclient.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AddclientComponent } from './components/addclient/addclient.component';
     ListfilterPipe,
     RelationshipcreationComponent,
     CredittransactionComponent,
-    AddclientComponent
+    AddclientComponent,
+    ViewclientComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,7 @@ import { AddclientComponent } from './components/addclient/addclient.component';
     NgMultiSelectDropDownModule.forRoot(),
     AngularMultiSelectModule
   ],
-  entryComponents:[TeaminformatonComponent],
+  entryComponents:[TeaminformatonComponent,ViewclientComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],
   bootstrap: [AppComponent]
