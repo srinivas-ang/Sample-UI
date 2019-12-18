@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup ,FormBuilder, FormControl, Validators, FormArray, NgForm } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -47,9 +47,12 @@ export class RelationshipcreationComponent implements OnInit {
     disabled: false,
     mode: 'indeterminate',
   }
+
+  @Input('childToMaster') masterName: any;
   constructor(private formBuilder:FormBuilder,private relationshipService:PitchcreationService,private snackbarService:SnackbarService) { }
 
   ngOnInit() {
+    console.log("masterName :"+ this.masterName)
     this.initializeForm()
    
     this.coverageteamSearchCtrl.valueChanges.pipe(takeUntil(this._onDestroy)).subscribe(()=>{
@@ -65,6 +68,14 @@ export class RelationshipcreationComponent implements OnInit {
     this.getCoverageTeamInfo();
     this.getIdustryInfo();
     this.getSubIndustryInfo();
+
+    if(this.masterName != null && this.masterName !=undefined && this.masterName !='undefined' && this.masterName !='')
+    {
+      debugger
+      this.f['ClientName'].setValue(this.masterName.clientName);
+      this.f['Industry'].setValue(this.masterName.industry);
+      this.f['SubIndustry'].setValue(this.masterName.subIndustry);
+    }
   }
 
   get f(){
@@ -121,21 +132,22 @@ this.coverageTeamInfoJSON=result;
       relationshipAssociate:null,
       subSector:"Liquids Gathering, Logistics, Terminaling & Storage",
       loadSupervisor:null,
-      callingApplication:"CIB",
+      callingApplication:"ICATCH",
       targetApplication:"IBCM",
       isDeleted:"N",
       CreatedDate:"11/4/2019 10:50:12 AM",
       LastModifiedDate:null,
       LastModifiedById:null,
       subSectorKey:"",
-      sectorKey:""
+      sectorKey:"",
+      isSponsor:"N"
     }
     this.relationSpinnerButtonOptions.active=true;
     this.relationshipService.createRelationship(obj).subscribe(result=>{
       debugger
       this.isSubmitted=false;
       this.relationSpinnerButtonOptions.active=false;
-      this.snackbarService.message="Relationship creation successfully created."
+      this.snackbarService.message=result.IBCM.responseMessage;
       this.snackbarService.showSnackbar();
       form.resetForm();
     
