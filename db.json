@@ -1337,107 +1337,173 @@
       "IsLegalExeDocs": "true",
       "FolderName": "srinivas ch",
       "id": 1
+    },
+    {
+      "CreditActionName": "dddddddddddddd",
+      "CreditActionDate": "2019-12-12T18:30:00.000Z",
+      "Industry": "Energy & Power",
+      "ClientName": "American Racing & Entertainment, LLC",
+      "ReportType": "FCRN",
+      "ProductInfo": [
+        {
+          "CPL1": "Asset Management",
+          "CPL2": "ABF Sales and Trading"
+        },
+        {
+          "CPL1": "Credit",
+          "CPL2": "Equity Sales and Trading"
+        },
+        {
+          "CPL1": "Deposits",
+          "CPL2": "Investment Solutions"
+        },
+        {
+          "CPL1": "Foreign Exchange",
+          "CPL2": "Rates Sales and Trading"
+        },
+        {
+          "CPL1": "Foreign Exchange",
+          "CPL2": "Hedge Fund Administration"
+        }
+      ],
+      "TeamInfo": [
+        {
+          "Name": "Bussiness Administrator",
+          "Value": "Bussiness Administrator"
+        },
+        {
+          "Name": "C&R Admin Support",
+          "Value": "C&R Admin Support"
+        },
+        {
+          "Name": "C&R Banker",
+          "Value": "C&R Banker"
+        },
+        {
+          "Name": "C&R CAO 6188_Test",
+          "Value": "C&R CAO 6188_Test"
+        },
+        {
+          "Name": "C&R Group Head",
+          "Value": "C&R Group Head"
+        }
+      ],
+      "AdditionalTeamInfo": "Bussiness Administrator\n\nC&R Admin Support\n\nC&R Banker\n\n",
+      "IsLegalExeDocs": "true",
+      "FolderName": "afasdadasdsadsa",
+      "id": 2
     }
   ],
-  "getSalesforceClients":[
+  "getSalesforceClients": [
     {
-      "wcisId":233775419, 
-      "clientName":"ohello Golf Club Inc", 
-      "Sponsor":"",
-      "tickerSymbol":"",
-      "taxId":"",
-      "industry":"Emergy & Power",
-      "city":"OTHELLO"
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Energy"
     },
     {
-      "wcisId":2337754191, 
-      "clientName":"ohello Golf Club Inc", 
-      "Sponsor":"",
-      "tickerSymbol":"",
-      "taxId":"",
-      "industry":"Emergy & Power",
-      "city":"OTHELLO"
+      "wcisId": 2337754191,
+      "clientName": "Accent Inc.",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Customer & Retail",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products"
     },
     {
-      "wcisId":2337754192, 
-      "clientName":"ohello Golf Club Inc", 
-      "Sponsor":"",
-      "tickerSymbol":"",
-      "taxId":"",
-      "industry":"Emergy & Power",
-      "city":"OTHELLO"
+      "wcisId": 2337754192,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products"
     },
     {
-      "wcisId":233775419, 
-      "clientName":"ohello Golf Club Inc", 
-      "Sponsor":"",
-      "tickerSymbol":"",
-      "taxId":"",
-      "industry":"Emergy & Power",
-      "city":"OTHELLO"
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products"
     },
     {
-      "wcisId":233775419, 
-      "clientName":"ohello Golf Club Inc", 
-      "Sponsor":"",
-      "tickerSymbol":"",
-      "taxId":"",
-      "industry":"Emergy & Power",
-      "city":"OTHELLO"
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products"
     },
     {
-      "wcisId":233775419, 
-      "clientName":"ohello Golf Club Inc", 
-      "Sponsor":"",
-      "tickerSymbol":"",
-      "taxId":"",
-      "industry":"Emergy & Power",
-      "city":"OTHELLO"
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products"
     },
     {
-      "wcisId":233775419, 
-      "clientName":"ohello Golf Club Inc", 
-      "Sponsor":"",
-      "tickerSymbol":"",
-      "taxId":"",
-      "industry":"Emergy & Power",
-      "city":"OTHELLO"
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products"
     },
     {
-      "wcisId":233775419, 
-      "clientName":"ohello Golf Club Inc", 
-      "Sponsor":"",
-      "tickerSymbol":"",
-      "taxId":"",
-      "industry":"Emergy & Power",
-      "city":"OTHELLO"
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products"
     },
     {
-      "wcisId":233775419, 
-      "clientName":"ohello Golf Club Inc", 
-      "Sponsor":"",
-      "tickerSymbol":"",
-      "taxId":"",
-      "industry":"Emergy & Power",
-      "city":"OTHELLO"
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products"
     },
     {
-      "wcisId":233775419, 
-      "clientName":"ohello Golf Club Inc", 
-      "Sponsor":"",
-      "tickerSymbol":"",
-      "taxId":"",
-      "industry":"Emergy & Power",
-      "city":"OTHELLO"
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products"
     },
     {
-      "wcisId":233775419, 
-      "clientName":"ohello Golf Club Inc", 
-      "Sponsor":"",
-      "tickerSymbol":"",
-      "taxId":"",
-      "industry":"Emergy & Power",
-      "city":"OTHELLO"
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products"
     }
   ]
 }
