@@ -1,0 +1,64 @@
+<div class="row mx-0">
+        <span class="col-sm-11 font-weight-bold">View Client Details</span>
+        <mat-icon class="float-right col-sm-1 text-right cursor-pointer" (click)="closeDialog()">close</mat-icon>
+            </div>
+            <hr/>
+<div class="row mx-0">
+    <div class="col-sm-3 card p-0 mr-2">
+        <div class="border-bottom p-1 font-weight-bold">
+            Repository Browser<mat-icon class="float-right font-weight-bold" >arrow_downward</mat-icon>
+        </div>
+        <div class="ml-3 mt-2">
+        <div>
+                <mat-icon class="text-warning mr-2">folder</mat-icon>ABF
+        </div>
+        <div class="ml-2 mt-2 pl-3">
+                <mat-icon class="text-warning mr-2">folder</mat-icon> Clients
+        </div>
+        <div class="ml-4 mt-2 pl-4">
+                <mat-icon class="text-warning mr-2">folder</mat-icon>Energy & Power
+        </div>
+        <div class="ml-5 mt-2 pl-4">
+                <mat-icon class="text-warning mr-2">folder</mat-icon>Othello Golf
+        </div>
+        <div class="ml-5 pl-5 mr-2 mt-2"  *ngFor="let item of sampleData">
+                <mat-icon class="text-warning mr-2" *ngIf="!item.IsFolder"> insert_drive_file</mat-icon>
+                <mat-icon class="text-warning mr-2" *ngIf="item.IsFolder">folder</mat-icon>
+                {{item.Name}}
+        </div>
+        </div>
+    </div>
+    <div class="col-sm-5 card p-0 mr-2">
+        <div class="p-1 font-weight-bold border-bottom">
+            ABG> Client > Energy & Power > Othello Golf
+        </div>
+        <div class="row mx-0 border-bottom">
+            <div class="col-sm-4 border-right">
+                Name
+            </div>
+            <div class="col-sm-4 border-right">
+                Modified Date
+            </div>
+            <div class="col-sm-4">
+                Modified By
+            </div>
+        </div>
+        <div class="row mx-0 border-bottom" *ngFor="let item of sampleData">
+            <div class="col-sm-4 border-right">
+{{item.Name}}
+            </div>
+            <div class="col-sm-4 border-right">
+{{item.ModifiedDate}}
+            </div>
+            <div class="col-sm-4">
+{{item.ModifiedBy}}
+            </div>
+        </div>
+    </div>
+    <div class="col-sm card font-weight-bold p-0">
+            <div class="border-bottom p-1">
+                    View Client
+                </div>
+            <app-relationshipcreation [childToMaster]=master></app-relationshipcreation>
+    </div>
+</div>
