@@ -1,7 +1,7 @@
 @import '~@angular/material/theming';
-$bgcolor-maroon :maroon !important;
-$color-maroon:maroon !important;
-$color-gold:gold !important;
+$bgcolor-maroon :rgb(169,62,0) !important;
+$color-maroon:rgb(169,62,0)  !important;
+$color-gold:#FFFFFF !important;
 
 // $custom-typography: mat-typography-config($font-family: 'Roboto');
 // @include mat-core($custom-typography);
@@ -14,7 +14,10 @@ $color-gold:gold !important;
 }
 .mat-button.mat-button-base.mat-primary.mat-raised-button{
     color: $color-gold;
-      }
+  }
+  button{
+    font-weight: bold !important;
+  }
 
 /* theme changes for input types start */
 .mat-form-field.mat-focused .mat-form-field-ripple{
@@ -30,6 +33,11 @@ $color-gold:gold !important;
     color:$color-maroon;
 }
 /* theme changes for input types end */
+
+.mat-header-row{
+  position:sticky !important;
+  top:0 !important;
+}
 
 /* multi select dropdown style changes start   reflected on pitch creation, credit transaction*/ 
   .clear-all c-icon{
