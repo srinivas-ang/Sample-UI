@@ -22,10 +22,10 @@ export class AddclientComponent implements OnInit {
   searchForm: FormGroup;
   resultsLength:any=0;
   isDataFound:any=true;
-  displayedColumns = ['action', 'wcisId', 'clientName', 'Sponsor','tickerSymbol','taxId','industry','city'];
+  displayedColumns = ['action', 'clientName','industry','city','state','taxId', 'wcisId'];
   clientSpinnerButtonOptions: MatProgressButtonOptions = {
     active: false,
-    text: 'Search Salesforce Client',
+    text: 'Search Salesforce Clients',
     spinnerSize: 18,
     raised: true,
     stroked: false,
@@ -42,7 +42,7 @@ export class AddclientComponent implements OnInit {
   
   constructor(private formBuilder: FormBuilder,private salesforceClientService:AddclientService,public dialog: MatDialog) { 
     this.searchForm=this.formBuilder.group({
-      searchText: new FormControl('', [Validators.minLength(3), Validators.required]),
+      searchText: new FormControl('', [Validators.minLength(2), Validators.required]),
     });
   }
 
