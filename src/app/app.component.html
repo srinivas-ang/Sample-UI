@@ -1,8 +1,21 @@
 <mat-toolbar class="bg_primary" color='primary'>
     <!-- <img width='78px' src="../aib.png"> -->
-    <div class="w-100">
-    <label>AIB</label>
-  <!-- <label *ngIf="userDetails" class="float-right">{{userDetails.UserName}}</label> -->
+    <div class="row mx-0 w-100">
+      <div class="col-sm-4">
+          <label>CIB - Documentum</label>
+      </div>
+      <div class="col-sm-8" *ngIf="userDetails">
+<div class="row float-right">
+  <div class="mr-1">
+      <mat-icon class="mt-1">person_pin</mat-icon>
+  </div>
+  <div class="">
+      <label>{{userDetails.UserName}}</label>
+    </div>
+</div>
+      </div>
+    
+  
 </div>
   </mat-toolbar>
 
