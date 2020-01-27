@@ -109,3 +109,30 @@ $color-gold:#FFFFFF !important;
     background-color: $bgcolor-maroon;
 }
 /* radio button style changes end*/
+
+
+/* Style only for Google Chrome/Opera */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  .mat-header-row{
+  min-height:3em !important;
+  }
+}
+/* Style only for Mozilla Firefox */
+@-moz-document url-prefix() {
+  .mat-header-row{
+    min-height:3em !important;
+    }
+}
+
+/* Style only for Internet Explorer */ 
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .mat-header-cell{
+    margin-top: 10px;
+  }
+  .mat-cell{
+    padding-top:12px
+  }
+  .mat-header-row{
+    min-height: 2em !important;
+  }
+}
