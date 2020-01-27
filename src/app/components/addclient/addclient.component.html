@@ -26,7 +26,7 @@
         </div>
     </form>
     <div class="mb-5" [ngStyle]="{'display': display}">
-        <div class="row mx-0" style="max-height: 330px;overflow: auto;">
+        <div class="row mx-0" style="max-height: 330px;overflow-y: scroll;">
         <mat-table [dataSource]="searchResult" class="example-table w-100" matSort>
             <!-- Number Column -->
             <ng-container matColumnDef="action">
@@ -94,7 +94,7 @@
            
            
 
-            <mat-header-row *matHeaderRowDef="displayedColumns" class="bg_primary " style="min-height:3em !important;border-radius: 10px;position: sticky !important;top: 0 !important;"></mat-header-row>
+            <mat-header-row *matHeaderRowDef="displayedColumns" class="bg_primary " style="border-radius: 10px;position: sticky !important;top: 0 !important;"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;" style="border-radius: 10px; border: whitesmoke 1px solid;"></mat-row>
         </mat-table>
     </div>
