@@ -12,7 +12,18 @@ import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  UserDetails:any= [
+    {
+      "UserName": "testadmin",
+      "Password": "testadmin",
+      "Role": "Admin"
+    },
+    {
+      "UserName": "testbanker",
+      "Password": "testbanker",
+      "Role": "Banker"
+    }
+  ];
   loginForm: FormGroup;
 loading = false;
 submitted = false;
@@ -49,6 +60,8 @@ this.loginForm = this.formBuilder.group({
 email: ['', Validators.required],
 password: ['', Validators.required]
 });
+
+this.app.logout();
  
 }
  
@@ -63,40 +76,39 @@ if (this.loginForm.invalid) {
   });
 return;
 }
- 
+
 this.loading = true;
 this.spinnerButtonOptions.active=true;
-// setTimeout(() => {
-//   if(this.fval.email.value == 'test' && this.fval.password.value=='test')
-//     this.router.navigate(['/home']);
-//   else{
-//     this.spinnerButtonOptions.active=false;
-//     this.errorMsg="Invalid Username or Password.";
-//   }
-
-// }, 4000);
-debugger
-this.loginService.login(this.fval.email.value, this.fval.password.value)
-.subscribe(
-data => {
-  debugger
-//  var loginDetails= data.find(x=>x.UserName==this.fval.email.value && x.Password == this.fval.password.value);
-if(data!=null && data !=undefined && data.length > 0){
+var data = this.UserDetails.find(x=>x.UserName==this.fval.email.value && x.Password == this.fval.password.value);
+if(data!=null && data !=undefined){
   this.spinnerButtonOptions.active=false;
-  localStorage.setItem("loginUserDetails",JSON.stringify(data[0]));
-  this.app.userDetails=data[0];
+  localStorage.setItem("loginUserDetails",JSON.stringify(data));
+  this.app.userDetails=data;
   this.router.navigate(['/home']);
 }
 else{
   this.errorMsg="Invalid Username or Password.";
   this.spinnerButtonOptions.active=false;
 }
+// this.loginService.login(this.fval.email.value, this.fval.password.value)
+// .subscribe(
+// data => {
+// if(data!=null && data !=undefined && data.length > 0){
+//   this.spinnerButtonOptions.active=false;
+//   localStorage.setItem("loginUserDetails",JSON.stringify(data[0]));
+//   this.app.userDetails=data[0];
+//   this.router.navigate(['/home']);
+// }
+// else{
+//   this.errorMsg="Invalid Username or Password.";
+//   this.spinnerButtonOptions.active=false;
+// }
 
-},
-error => {
-// this.toastr.error(error.error.message, 'Error'); 
-this.loading = false;
-});
+// },
+// error => {
+// // this.toastr.error(error.error.message, 'Error'); 
+// this.loading = false;
+// });
 }
 
 }
