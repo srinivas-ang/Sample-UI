@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'AIBUI';
   public userDetails:any;
- 
+ constructor(private router:Router){
+
+ }
   ngOnInit() {
-    debugger
     this.userDetails=JSON.parse(localStorage.getItem('loginUserDetails'));
   }
- 
+  logout(){
+    this.userDetails=null;
+    localStorage.clear();
+this.router.navigateByUrl('/login');
+  }
 }
