@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import {AppComponent} from '../../app.component';
-
+import { ActivatedRoute, Router } from '@angular/router';
 import {Roles} from '../../common/roles.enum';
 import {SnackbarService} from '../../services/snackbar.service';
 
@@ -17,13 +17,19 @@ export class HomeComponent implements OnInit {
   userRoles:any;
   menuptions = MenuOptions;
   menuSelectedOption:any='';
-  constructor(private app:AppComponent, private formBuilder:FormBuilder, private snackBarService:SnackbarService) {
+  constructor(private app:AppComponent, private formBuilder:FormBuilder, private snackBarService:SnackbarService, private router :Router) {
     this.userRoles=Roles;
   }
 
   
 
   ngOnInit() {
+    if(this.app.userDetails){
+
+    }
+    else{
+this.router.navigateByUrl("/login")
+    }
   }
 
  
