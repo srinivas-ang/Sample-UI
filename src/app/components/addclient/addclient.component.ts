@@ -14,6 +14,140 @@ import { ViewclientComponent } from './viewclient/viewclient.component';
   styleUrls: ['./addclient.component.css']
 })
 export class AddclientComponent implements OnInit {
+  SalesforceClients:any= [
+    {
+      "wcisId": "",
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Energy",
+      "state":"MN"
+    },
+    {
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Energy",
+      "state":"MN"
+    },
+    {
+      "wcisId": 2337754191,
+      "clientName": "Accent Inc.",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Customer & Retail",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products",
+      "state":"MN"
+    },
+    {
+      "wcisId": 2337754192,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products",
+      "state":"MN"
+    },
+    {
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products",
+      "state":"MN"
+    },
+    {
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products",
+      "state":"MN"
+    },
+    {
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products",
+      "state":"MN"
+    },
+    {
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products",
+      "state":"MN"
+    },
+    {
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products",
+      "state":"MD"
+    },
+    {
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products",
+      "state":"MD"
+    },
+    {
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products",
+      "state":"MD"
+    },
+    {
+      "wcisId": 233775419,
+      "clientName": "ohello Golf Club Inc",
+      "Sponsor": "",
+      "tickerSymbol": "",
+      "taxId": "",
+      "industry": "Energy & Power",
+      "city": "OTHELLO",
+      "subIndustry":"Consumer Products",
+      "state":"MD"
+    }
+  ];
   // searchText:any;
   display:any="none";
   isValidFormSubmitted=true;
@@ -64,7 +198,6 @@ export class AddclientComponent implements OnInit {
   
   
   searchClientDetails(){
-    debugger
     if (this.searchForm.invalid) {
       this.isValidFormSubmitted = false;
       this.searchForm.markAllAsTouched();
@@ -73,25 +206,34 @@ export class AddclientComponent implements OnInit {
     }
     this.isValidFormSubmitted=true;
     this.clientSpinnerButtonOptions.active=true;
-    this.salesforceClientService.searchSalesforceClients(this.getSearchText.value).subscribe(result => {
-      this.clientSpinnerButtonOptions.active=false;
-      if(result.length > 0){
-        this.display='';
-        this.resultsLength=result.length;
-        this.searchResult= new MatTableDataSource(result);
+    // this will be comment after dynamic start
+    this.resultsLength=this.SalesforceClients.length;
+        this.searchResult= new MatTableDataSource(this.SalesforceClients);
         this.searchResult.paginator = this.paginator;
         this.searchResult.sort=this.sort;
-      }
-      else{
-        this.isDataFound=false;
-        this.display='none';
-      }
+        this.display='';
+        this.clientSpinnerButtonOptions.active=false;
+
+    // this will be comment after dynamic end
+
+    // this.salesforceClientService.searchSalesforceClients(this.getSearchText.value).subscribe(result => {
+    //   this.clientSpinnerButtonOptions.active=false;
+    //   if(result.length > 0){
+    //     this.display='';
+    //     this.resultsLength=result.length;
+    //     this.searchResult= new MatTableDataSource(result);
+    //     this.searchResult.paginator = this.paginator;
+    //     this.searchResult.sort=this.sort;
+    //   }
+    //   else{
+    //     this.isDataFound=false;
+    //     this.display='none';
+    //   }
      
-    });
+    // });
   }
 
   viewClienDetails(data) {
-    debugger
     const dialogRef = this.dialog.open(ViewclientComponent, {
       width: '80%',
       data:data
