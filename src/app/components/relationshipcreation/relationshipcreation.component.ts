@@ -18,7 +18,7 @@ export class RelationshipcreationComponent implements OnInit {
   public coverageteamSearchCtrl:FormControl=new FormControl();
   public idustrySearchCtrl:FormControl=new FormControl();
   public subIndustrySearchCtrl:FormControl=new FormControl()
-  
+  isFromOther:boolean=false;
   coverageTeamSearchText:any='';
   idustrySearchText:any='';
   subIndustrySearchText:any='';
@@ -71,7 +71,7 @@ export class RelationshipcreationComponent implements OnInit {
 
     if(this.masterName != null && this.masterName !=undefined && this.masterName !='undefined' && this.masterName !='')
     {
-      debugger
+      this.isFromOther=true;
       this.f['ClientName'].setValue(this.masterName.clientName);
       this.f['Industry'].setValue(this.masterName.industry);
       this.f['SubIndustry'].setValue(this.masterName.subIndustry);
@@ -144,7 +144,6 @@ this.coverageTeamInfoJSON=result;
     }
     this.relationSpinnerButtonOptions.active=true;
     this.relationshipService.createRelationship(obj).subscribe(result=>{
-      debugger
       this.isSubmitted=false;
       this.relationSpinnerButtonOptions.active=false;
       this.snackbarService.message=result.IBCM.responseMessage;
