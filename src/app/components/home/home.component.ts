@@ -17,13 +17,14 @@ export class HomeComponent implements OnInit {
   userRoles:any;
   menuptions = MenuOptions;
   menuSelectedOption:any='';
-  constructor(private app:AppComponent, private formBuilder:FormBuilder, private snackBarService:SnackbarService, private router :Router) {
+  constructor(public app:AppComponent, private formBuilder:FormBuilder, private snackBarService:SnackbarService, private router :Router) {
     this.userRoles=Roles;
   }
 
   
 
   ngOnInit() {
+    this.app.userDetails=JSON.parse(localStorage.getItem('loginUserDetails'));
     if(this.app.userDetails){
 
     }
