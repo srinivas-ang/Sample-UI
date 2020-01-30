@@ -6,11 +6,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AddclientService {
-  baseUrl="http://localhost:3200/";
+  baseUrl="http://wdvra97a0184.wellsfargo.com:9003/";
   constructor(private _http:HttpClient) { }
 
   searchSalesforceClients(data):Observable<any>{
     return this._http.get<any>(this.baseUrl+'getSalesforceClients')
-      //  return this._http.get('api/client',data)
+      //  return this._http.get('api/client?searchtext=' + data)
   }
 }

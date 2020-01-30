@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PitchcreationService {
 
-  baseUrl="http://localhost:3200/";
+  baseUrl="http://wdvra97a0184.wellsfargo.com:9003/";
 
   constructor(private _http:HttpClient) {
   
@@ -43,7 +43,7 @@ export class PitchcreationService {
     return this._http.get<any>(this.baseUrl+'getSubIndustry')
   }
   createRelationship(data):Observable<any>{
-    // return this._http.post<any>(this.baseUrl+'createRelationship',data)
-      return this._http.post('api/client',data)
+    return this._http.post<any>(this.baseUrl+'createRelationship',data)
+      // return this._http.post('api/client',data)
   }
 }
