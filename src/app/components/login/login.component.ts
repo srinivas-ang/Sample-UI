@@ -56,12 +56,17 @@ private loginService : LoginService,
 ) { }
  
 ngOnInit() {
+  if(localStorage.getItem("loginUserDetails"))
+  {
+    this.router.navigateByUrl('/home');
+  }
+ 
 this.loginForm = this.formBuilder.group({
 email: ['', Validators.required],
 password: ['', Validators.required]
 });
 
-this.app.logout();
+
  
 }
  
@@ -84,7 +89,7 @@ if(data!=null && data !=undefined){
   this.spinnerButtonOptions.active=false;
   localStorage.setItem("loginUserDetails",JSON.stringify(data));
   this.app.userDetails=data;
-  this.router.navigate(['/home']);
+  this.router.navigateByUrl('/home');
 }
 else{
   this.errorMsg="Invalid Username or Password.";
