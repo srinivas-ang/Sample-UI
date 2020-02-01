@@ -177,6 +177,7 @@ export class AddclientComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,private salesforceClientService:AddclientService,public dialog: MatDialog) { 
     this.searchForm=this.formBuilder.group({
       searchText: new FormControl('', [Validators.minLength(2), Validators.required]),
+      searchType: new FormControl("Name")
     });
   }
 
@@ -192,6 +193,9 @@ export class AddclientComponent implements OnInit {
   get getSearchText() {
     return this.searchForm.get('searchText');
 } 
+get getSearchType(){
+  return this.searchForm.get('searchType');
+}
   removeSearchText(){
     this.getSearchText.setValue('');
   }
