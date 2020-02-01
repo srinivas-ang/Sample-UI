@@ -21,7 +21,7 @@
             "aot": false,
             "assets": [
               "src/CIB.png",
-              "src/favicon.ico",
+              
               "src/assets",
               
 
@@ -96,7 +96,7 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/CIB.png",
-              "src/favicon.ico",
+              
               "src/assets"
             ],
             "styles": [
