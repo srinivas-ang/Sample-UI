@@ -6,7 +6,7 @@ import { Router } from '@angular/router'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'AIBUI';
+  title = 'CIBUI';
   public userDetails:any;
  constructor(private router:Router){
 
