@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "AIBUI": {
+    "CIBUI": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,16 +13,19 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/AIBUI",
+            "outputPath": "dist/CIBUI",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": false,
             "assets": [
-              "src/aib.png",
+              "src/CIB.png",
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              
+
+              "src/WEB-INF"
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -69,19 +72,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "AIBUI:build",
+            "browserTarget": "CIBUI:build",
             "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "AIBUI:build:production"
+              "browserTarget": "CIBUI:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "AIBUI:build"
+            "browserTarget": "CIBUI:build"
           }
         },
         "test": {
@@ -92,7 +95,7 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "src/aib.png",
+              "src/CIB.png",
               "src/favicon.ico",
               "src/assets"
             ],
@@ -119,15 +122,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "AIBUI:serve"
+            "devServerTarget": "CIBUI:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "AIBUI:serve:production"
+              "devServerTarget": "CIBUI:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "AIBUI"
+  "defaultProject": "CIBUI"
 }
