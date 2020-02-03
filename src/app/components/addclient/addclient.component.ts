@@ -211,30 +211,30 @@ get getSearchType(){
     this.isValidFormSubmitted=true;
     this.clientSpinnerButtonOptions.active=true;
     // this will be comment after dynamic start
-    this.resultsLength=this.SalesforceClients.length;
-        this.searchResult= new MatTableDataSource(this.SalesforceClients);
-        this.searchResult.paginator = this.paginator;
-        this.searchResult.sort=this.sort;
-        this.display='';
-        this.clientSpinnerButtonOptions.active=false;
+    // this.resultsLength=this.SalesforceClients.length;
+    //     this.searchResult= new MatTableDataSource(this.SalesforceClients);
+    //     this.searchResult.paginator = this.paginator;
+    //     this.searchResult.sort=this.sort;
+    //     this.display='';
+    //     this.clientSpinnerButtonOptions.active=false;
 
     // this will be comment after dynamic end
 
-    // this.salesforceClientService.searchSalesforceClients(this.getSearchText.value).subscribe(result => {
-    //   this.clientSpinnerButtonOptions.active=false;
-    //   if(result.length > 0){
-    //     this.display='';
-    //     this.resultsLength=result.length;
-    //     this.searchResult= new MatTableDataSource(result);
-    //     this.searchResult.paginator = this.paginator;
-    //     this.searchResult.sort=this.sort;
-    //   }
-    //   else{
-    //     this.isDataFound=false;
-    //     this.display='none';
-    //   }
+    this.salesforceClientService.searchSalesforceClients(this.getSearchType.value, this.getSearchText.value).subscribe(result => {
+      this.clientSpinnerButtonOptions.active=false;
+      if(result.length > 0){
+        this.display='';
+        this.resultsLength=result.length;
+        this.searchResult= new MatTableDataSource(result);
+        this.searchResult.paginator = this.paginator;
+        this.searchResult.sort=this.sort;
+      }
+      else{
+        this.isDataFound=false;
+        this.display='none';
+      }
      
-    // });
+    });
   }
 
   viewClienDetails(data) {

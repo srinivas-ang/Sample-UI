@@ -9,8 +9,8 @@
             <span>Search Client By :</span>
             <span>
                 <mat-radio-group class="ml-5" aria-label="Search Client By" formControlName="searchType">
-                    <mat-radio-button color="primary" class="mr-4" value="Name">Name</mat-radio-button>
-                    <mat-radio-button color="primary" value="WCISID">WCIS ID</mat-radio-button>
+                    <mat-radio-button color="primary" class="mr-4" value="C">Name</mat-radio-button>
+                    <mat-radio-button color="primary" value="W">WCIS ID</mat-radio-button>
                 </mat-radio-group>
             </span>
         </div>
@@ -26,11 +26,11 @@
                     class="mb-3 text-danger">
                     Your search term must have 2 or more characters.
                 </div>
-                <div *ngIf="(getSearchText.touched || !isValidFormSubmitted) && getSearchText.errors?.required && getSearchType.value == 'Name'"
+                <div *ngIf="(getSearchText.touched || !isValidFormSubmitted) && getSearchText.errors?.required && getSearchType.value == 'C'"
                     class="mb-3 text-danger">
                     Client Name required.
                 </div>
-                <div *ngIf="(getSearchText.touched || !isValidFormSubmitted) && getSearchText.errors?.required && getSearchType.value == 'WCISID'"
+                <div *ngIf="(getSearchText.touched || !isValidFormSubmitted) && getSearchText.errors?.required && getSearchType.value == 'W'"
                     class="mb-3 text-danger">
                     Client WCIS ID required.
                 </div>
