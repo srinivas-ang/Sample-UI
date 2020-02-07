@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AddclientService {
   headers:HttpHeaders;
-   baseUrl="http://localhost:3200/";
+  //  baseUrl="http://localhost:3200/";
   constructor(private _http:HttpClient) { }
 
   searchSalesforceClients(criteriaType, criteriaValue):Observable<any>{
@@ -19,7 +19,7 @@ export class AddclientService {
         'username':userDetails ? userDetails.UserName:'sample'
       })
     };
-    return this._http.get<any>(this.baseUrl+'getSalesforceClients',httpOptions);
-    // return this._http.get('api/searchClient/'+ criteriaType + '/' + criteriaValue,httpOptions);
+    // return this._http.get<any>(this.baseUrl+'getSalesforceClients',httpOptions);
+    return this._http.get('api/searchClient/'+ criteriaType + '/' + criteriaValue,httpOptions);
   }
 }
