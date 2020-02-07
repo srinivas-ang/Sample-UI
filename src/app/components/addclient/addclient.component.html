@@ -4,16 +4,16 @@
         to add the Client to Documentum.
     </div>
     <form [formGroup]="searchForm">
-        <div class="row mx-0">
-            <div class="col-sm">
-            <span>Search Client By :</span>
-            <span>
+        <div class="row mx-3">
+            <!-- <div class="col-sm"> -->
+            <div>Search Client By :</div>
+            <div>
                 <mat-radio-group class="ml-5" aria-label="Search Client By" formControlName="searchType">
                     <mat-radio-button color="primary" class="mr-4" value="C">Name</mat-radio-button>
                     <mat-radio-button color="primary" value="W">WCIS ID</mat-radio-button>
                 </mat-radio-group>
-            </span>
-        </div>
+            </div>
+        <!-- </div> -->
         </div>
         <div class="row mx-0">
 
@@ -50,8 +50,8 @@
                     </mat-header-cell>
                     <mat-cell *matCellDef="let row" style="max-width: 6em;">
                         <!-- <mat-icon matTooltip="View" (click)="viewClienDetails(row)" class="cursor-pointer text-primary">remove_red_eye</mat-icon> -->
-                        <a *ngIf="row.wcisId !=''" class="cursor-pointer" (click)="viewClienDetails(row)">View</a>
-                        <a *ngIf="row.wcisId == ''" class="cursor-pointer" (click)="viewClienDetails(row)">Add</a>
+                        <a *ngIf="row.dctmRelId != null" class="cursor-pointer" (click)="viewClienDetails(row)">View</a>
+                        <a *ngIf="row.dctmRelId == null" class="cursor-pointer" (click)="viewClienDetails(row)">Add</a>
                     </mat-cell>
                 </ng-container>
 
@@ -122,7 +122,7 @@
                 class="container card" style="border-radius: 10px"></mat-paginator>
         </div>
     </div>
-    <div class="alert alert-warning border mx-0 text-center" *ngIf="!isDataFound">
-        <label>Please navigate to salesforce to create the client.</label>
+    <div class="alert alert-warning border mx-0 text-center" *ngIf="!isDataFound || display==''">
+        <label>Still cant find your client in Documentum?Search client in Salesforce <a href="https://ibcm--cibuat2.lightning.force.com/" target="_blank"> https://ibcm--cibuat2.lightning.force.com/</a></label>
     </div>
 </div>
