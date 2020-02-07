@@ -1,6 +1,6 @@
 {  
     "/api/*": {  
-       "target":"https://ibcm-d2-qa.wellsfargo.net/cibservices",  
+       "target":"http://wdvra97a0184:9003/cib-clientapi",  
        "secure": false,
         "changeOrigin": true,
         "logLevel": "debug",
