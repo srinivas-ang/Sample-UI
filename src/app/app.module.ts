@@ -18,6 +18,7 @@ import { RelationshipcreationComponent } from './components/relationshipcreation
 import { CredittransactionComponent } from './components/credittransaction/credittransaction.component';
 import { AddclientComponent } from './components/addclient/addclient.component';
 import { ViewclientComponent } from './components/addclient/viewclient/viewclient.component';
+import { NonProductspecifcpitchcreationComponent } from './components/non-productspecifcpitchcreation/non-productspecifcpitchcreation.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ViewclientComponent } from './components/addclient/viewclient/viewclien
     RelationshipcreationComponent,
     CredittransactionComponent,
     AddclientComponent,
-    ViewclientComponent
+    ViewclientComponent,
+    NonProductspecifcpitchcreationComponent
   ],
   imports: [
     BrowserModule,
