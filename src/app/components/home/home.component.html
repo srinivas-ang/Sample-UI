@@ -13,6 +13,11 @@
                               [ngClass]="{'bg_primary': menuSelectedOption == menuptions.PITCH_CREATION}">
                               {{menuptions.PITCH_CREATION}}</mat-list-item>
                     </a>
+                    <a (click)="menuSelectedOption=menuptions.NON_PRODUCT_SPECIFIC_PITCH" class="cursor-pointer">
+                         <mat-list-item role="listitem"  class="border_bottom"
+                              [ngClass]="{'bg_primary': menuSelectedOption == menuptions.NON_PRODUCT_SPECIFIC_PITCH}">
+                              {{menuptions.NON_PRODUCT_SPECIFIC_PITCH}}</mat-list-item>
+                    </a>
                     <a (click)="menuSelectedOption=menuptions.STANDARD_FOLDER" class="cursor-pointer">
                          <mat-list-item role="listitem" class="border_bottom"
                               [ngClass]="{'bg_primary': menuSelectedOption == menuptions.STANDARD_FOLDER}">
@@ -25,9 +30,9 @@
                               {{menuptions.CREDIT_TRANSACTION_FOLDER}}</mat-list-item>
                     </a>
                     
-                    <a (click)="menuSelectedOption=menuptions.RESTRUCTED_FOLDER" class="cursor-pointer" *ngIf="userRoles.ADMIN == app.userDetails.Role">
+                    <a (click)="menuSelectedOption=menuptions.RESTRICTED_FOLDER" class="cursor-pointer" *ngIf="userRoles.ADMIN == app.userDetails.Role">
                          <mat-list-item role="listitem"  class="border_bottom"
-                              [ngClass]="{'bg_primary': menuSelectedOption == menuptions.RESTRUCTED_FOLDER}">
+                              [ngClass]="{'bg_primary': menuSelectedOption == menuptions.RESTRICTED_FOLDER}">
                               {{menuptions.RESTRICTED_FOLDER}}</mat-list-item>
                     </a>
                     <a (click)="menuSelectedOption=menuptions.RLATIONSHIP_FOLDER" class="cursor-pointer">
@@ -47,6 +52,9 @@
           <div class="col ml-3 card" *ngIf="menuSelectedOption !=''">
                <div *ngIf="menuSelectedOption == menuptions.PITCH_CREATION">
                     <app-pitchcreation></app-pitchcreation>
+               </div>
+               <div *ngIf="menuSelectedOption == menuptions.NON_PRODUCT_SPECIFIC_PITCH">
+                    <app-non-productspecifcpitchcreation></app-non-productspecifcpitchcreation>
                </div>
                <div *ngIf="menuSelectedOption == menuptions.RLATIONSHIP_FOLDER">
                     <app-relationshipcreation></app-relationshipcreation>

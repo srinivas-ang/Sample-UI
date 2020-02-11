@@ -49,5 +49,6 @@ export enum MenuOptions {
   CREDIT_TRANSACTION_FOLDER = "Credit Trasaction Folder",
   RESTRICTED_FOLDER="Restricted Folder",
   RLATIONSHIP_FOLDER="Relationship Creation Folder",
-  ADD_CLIENT="Add Client"
+  ADD_CLIENT="Add Client",
+  NON_PRODUCT_SPECIFIC_PITCH="Non-Product Specific Pitch"
 }
