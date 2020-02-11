@@ -43,7 +43,7 @@ export class PitchcreationService {
     return this._http.get<any>(this.baseUrl+'getSubIndustry')
   }
   createRelationship(data):Observable<any>{
-    return this._http.post<any>(this.baseUrl+'createRelationship',data)
-      // return this._http.post('api/client',data)
+    // return this._http.post<any>(this.baseUrl+'createRelationship',data)
+      return this._http.post('https://ibcm-d2-qa.wellsfargo.net/cibservices/api/client',data)
   }
 }
