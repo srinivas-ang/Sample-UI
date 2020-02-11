@@ -8,6 +8,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewclientComponent } from './viewclient/viewclient.component';
 import { HttpErrorResponse } from '@angular/common/http';
+import { PitchcreationService } from '../../services/pitchcreation.service';
+import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
   selector: 'app-addclient',
@@ -175,7 +177,8 @@ export class AddclientComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort,{static: true}) sort: MatSort;
   
-  constructor(private formBuilder: FormBuilder,private salesforceClientService:AddclientService,public dialog: MatDialog) { 
+  constructor(private formBuilder: FormBuilder,private salesforceClientService:AddclientService,public dialog: MatDialog, 
+    private relationshipService:PitchcreationService, private snackBarService:SnackbarService) { 
     this.searchForm=this.formBuilder.group({
       searchText: new FormControl('', [Validators.minLength(2), Validators.required]),
       searchType: new FormControl("C")
@@ -227,7 +230,7 @@ get getSearchType(){
         this.display='';
         this.resultsLength=result.length;
         this.searchResult= new MatTableDataSource(result);
-        this.searchResult.paginator = this.paginator;
+        this.searchResult.paginator = this.paginator; 
         this.searchResult.sort=this.sort;
       }
       else{
@@ -244,7 +247,22 @@ get getSearchType(){
   });
   }
 
-  viewClienDetails(data) {
+  viewClienDetails(data, type) {
+    if(type == 'add'){
+      var obj={
+        "clientName":data.clientName,
+        "industry":data.industry,
+        "subIndustry":data.subIndustry
+      }
+      this.relationshipService.createRelationship(obj).subscribe(result => {
+        this.snackBarService.message=result.IBCM.responseMessage;
+        this.snackBarService.showSnackbar();
+      }, error => {
+        this.snackBarService.message="error occured";
+        this.snackBarService.showSnackbar();
+    });
+    }
+    else{
     const dialogRef = this.dialog.open(ViewclientComponent, {
       width: '80%',
       data:data
@@ -253,6 +271,7 @@ get getSearchType(){
     dialogRef.afterClosed().subscribe(result => {
       
     });
+  }
 
   }
 

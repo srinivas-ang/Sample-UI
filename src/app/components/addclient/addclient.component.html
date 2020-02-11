@@ -46,12 +46,12 @@
             <mat-table [dataSource]="searchResult" class="example-table w-100" matSort>
                 <!-- Number Column -->
                 <ng-container matColumnDef="action">
-                    <mat-header-cell *matHeaderCellDef style="max-width: 7em;" class="text-white">Action
+                    <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-white">Action
                     </mat-header-cell>
-                    <mat-cell *matCellDef="let row" style="max-width: 6em;">
+                    <mat-cell *matCellDef="let row">
                         <!-- <mat-icon matTooltip="View" (click)="viewClienDetails(row)" class="cursor-pointer text-primary">remove_red_eye</mat-icon> -->
-                        <a *ngIf="row.dctmRelId != null" class="cursor-pointer" (click)="viewClienDetails(row)">View</a>
-                        <a *ngIf="row.dctmRelId == null" class="cursor-pointer" (click)="viewClienDetails(row)">Add</a>
+                        <a *ngIf="row.dctmRelId != null" class="cursor-pointer" (click)="viewClienDetails(row,'view')">View</a>
+                        <a *ngIf="row.dctmRelId == null" class="cursor-pointer" (click)="viewClienDetails(row,'add')">Add</a>
                     </mat-cell>
                 </ng-container>
 
