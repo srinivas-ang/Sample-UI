@@ -17,6 +17,9 @@ $color-gold:#FFFFFF !important;
     background: $bgcolor-maroon;
     color: $color-gold;
 }
+body{
+  font-family: auto !important;
+}
 .mat-raised-button.mat-primary {
     background-color: $bgcolor-maroon;
 }
