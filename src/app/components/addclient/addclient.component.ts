@@ -7,6 +7,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewclientComponent } from './viewclient/viewclient.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-addclient',
@@ -234,7 +235,13 @@ get getSearchType(){
         this.display='none';
       }
      
-    });
+    }, error => {
+      this.clientSpinnerButtonOptions.active=false;
+      if (error instanceof HttpErrorResponse && error.status == 404) {
+        this.isDataFound=false;
+        this.display='none';
+      }
+  });
   }
 
   viewClienDetails(data) {
