@@ -13,6 +13,7 @@ export class NonProductspecifcpitchcreationComponent implements OnInit {
   _Non_ProductSpecificForm: FormGroup;
   teamInfoDropdownSettings :any= {};
   isSubmitted:boolean=false;
+  pitchMinDate:Date=new Date();
   createSpinnerButtonOptions: MatProgressButtonOptions = {
     active: false,
     text: 'Create',
