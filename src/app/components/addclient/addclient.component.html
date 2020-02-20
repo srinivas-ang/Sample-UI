@@ -50,8 +50,8 @@
                     </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                         <!-- <mat-icon matTooltip="View" (click)="viewClienDetails(row)" class="cursor-pointer text-primary">remove_red_eye</mat-icon> -->
-                        <a *ngIf="row.dctmRelId != null" class="cursor-pointer" (click)="viewClienDetails(row,'view')">View</a>
-                        <a *ngIf="row.dctmRelId == null" class="cursor-pointer" (click)="viewClienDetails(row,'add')">Add</a>
+                        <a *ngIf="row.dctmRelId != null" class="cursor-pointer" (click)="viewSalesforceClient(row)">View</a>
+                        <a *ngIf="row.dctmRelId == null" class="cursor-pointer" (click)="addSalesforceClient(row)">Add</a>
                     </mat-cell>
                 </ng-container>
 
