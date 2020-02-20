@@ -8,18 +8,32 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AddclientService {
   headers:HttpHeaders;
-  //  baseUrl="http://localhost:3200/";
-  constructor(private _http:HttpClient) { }
+  userDetails:any;
+   baseUrl="http://localhost:3200/";
+  constructor(private _http:HttpClient) {
+     this.userDetails=JSON.parse(localStorage.getItem("loginUserDetails"));
+   }
 
   searchSalesforceClients(criteriaType, criteriaValue):Observable<any>{
-    var userDetails=JSON.parse(localStorage.getItem("loginUserDetails"));
+    
     const httpOptions = {
       headers: new HttpHeaders({
         'appName': 'IBCM',
-        'username':userDetails ? userDetails.UserName:'sample'
+        'username':this.userDetails ? this.userDetails.UserName:'sample'
       })
     };
     // return this._http.get<any>(this.baseUrl+'getSalesforceClients',httpOptions);
     return this._http.get('api/searchClient/'+ criteriaType + '/' + criteriaValue,httpOptions);
+  }
+  addSalesforceClient(data):Observable<any>{
+    data.UserName=this.userDetails ? this.userDetails.UserName:'sample';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'appName': 'CBG',
+        'userid':'sample',
+        'username':this.userDetails ? this.userDetails.UserName:'sample'
+      })
+    };
+    return this._http.post<any>('api/client',data,httpOptions);
   }
 }
