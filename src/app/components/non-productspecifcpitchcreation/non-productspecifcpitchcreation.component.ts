@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
+import { DateValidator } from './../../common/DateValidator';
 
 @Component({
   selector: 'app-non-productspecifcpitchcreation',
@@ -11,9 +12,10 @@ import { MatProgressButtonOptions } from 'mat-progress-buttons';
 export class NonProductspecifcpitchcreationComponent implements OnInit {
 
   _Non_ProductSpecificForm: FormGroup;
-  teamInfoDropdownSettings :any= {};
-  isSubmitted:boolean=false;
-  pitchMinDate:Date=new Date();
+  teamInfoDropdownSettings: any = {};
+  isSubmitted: boolean = false;
+  pitchMinDate: Date = new Date();
+  isDateFormatError: boolean = false;
   createSpinnerButtonOptions: MatProgressButtonOptions = {
     active: false,
     text: 'Create',
@@ -44,7 +46,7 @@ export class NonProductspecifcpitchcreationComponent implements OnInit {
     //   fontIcon: 'add'
     // }
   }
-  teamInfoJson:any[] = [
+  teamInfoJson: any[] = [
     {
       Name: 'James, Smith',
       Value: 'James, Smith'
@@ -79,7 +81,7 @@ export class NonProductspecifcpitchcreationComponent implements OnInit {
     }
 
   ]
-  constructor(private formBuilder:FormBuilder,private snackBarService:SnackbarService) { }
+  constructor(private formBuilder: FormBuilder, private snackBarService: SnackbarService) { }
 
   ngOnInit() {
     this.teamInfoDropdownSettings = {
@@ -87,44 +89,52 @@ export class NonProductspecifcpitchcreationComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       enableCheckAll: false,
-      labelKey:'Name',
-      primaryKey:'Value',
-      enableSearchFilter:true,
+      labelKey: 'Name',
+      primaryKey: 'Value',
+      enableSearchFilter: true,
       classes: "myclass custom-class"
-  };
-  this.initForm();
-   
+    };
+    this.initForm();
+
   }
 
-  get f(){
+  get f() {
     return this._Non_ProductSpecificForm.controls;
   }
-  initForm(){
+  initForm() {
     this._Non_ProductSpecificForm = this.formBuilder.group({
       PitchName: new FormControl('', Validators.required),
       PitchDate: new FormControl('', Validators.required),
-      TeamInfo:new FormControl('',Validators.required),
-     PitchStatus:new FormControl(''),
-     PitchClient:new FormControl('')
+      TeamInfo: new FormControl('', Validators.required),
+      PitchStatus: new FormControl(''),
+      PitchClient: new FormControl('')
 
 
     });
   }
-  createNonProductSpecific(form){
+
+  getErrorMessage(pickerInput: string): string {
+    if (!pickerInput || pickerInput === '') {
+      return 'Pitch date Required.';
+    }
+    return DateValidator.dateFormatVaidator(this.f["PitchDate"]);
+  }
+
+  createNonProductSpecific(form) {
     if (this._Non_ProductSpecificForm.invalid) {
-      this.isSubmitted=true;
+      this.isSubmitted = true;
       
       this._Non_ProductSpecificForm.markAllAsTouched();
       return;
     }
-    this.snackBarService.message="Pitch creation successfully created."
+    this.snackBarService.message = "Pitch creation successfully created."
 
     this.snackBarService.showSnackbar();
     // form.resetForm();
     this.initForm();
-    
+
   }
-  cancelNonProductSpecific(form){
+  cancelNonProductSpecific(form) {
     // form.resetForm();
     this.initForm();
   }

@@ -11,15 +11,24 @@
                         Name Required.
                     </div>
                     <mat-form-field class="w-100">
-                        <input matInput [matDatepicker]="picker" [min]='pitchMinDate' formControlName="PitchDate"
-                            placeholder="Pitch Date" required>
+                        <input matInput [matDatepicker]="picker"  #pickerInput [min]='pitchMinDate'
+                            formControlName="PitchDate" placeholder="Pitch Date" required>
                         <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
-                    <div class="text-danger"
+                    <!-- <div class="text-danger"
                         *ngIf="f.PitchDate.invalid && f.PitchDate.errors.required && f.PitchDate.touched && isSubmitted">
                         Pitch date Required.
+                    </div> -->
+                    <!-- <div class="text-danger"
+                        *ngIf="f.PitchDate.invalid && f.PitchDate.touched && f.PitchDate.errors?.matDatepickerMin">
+                        Selected Pitch Date is less than today date.
+                    </div> -->
+                    <div class="text-danger"
+                        *ngIf="f.PitchDate.invalid && f.PitchDate.errors.required && (f.PitchDate.touched || isSubmitted)">
+                        {{getErrorMessage(pickerInput.value)}}
                     </div>
+
                     <div class="w-100 mt-3">
                         <div class="mx-0 row">
                             <div class="mt-1 font-weight-bold">Team Info : </div>
@@ -31,11 +40,11 @@
                             </div>
                             <div class="card col-sm-4" style="max-height: 150px;
                                                 overflow: auto;" *ngIf="f.TeamInfo.valid">
-                                                <label class="font-weight-bold">Selected Team Info</label>
-                                                <label class="w-100 pl-3" *ngFor="let team of f.TeamInfo?.value; let i=index;">
-                                                        <span>{{i+1}}. {{team.Name}}</span>
-                                                </label>
-                                                    </div>
+                                <label class="font-weight-bold">Selected Team Info</label>
+                                <label class="w-100 pl-3" *ngFor="let team of f.TeamInfo?.value; let i=index;">
+                                    <span>{{i+1}}. {{team.Name}}</span>
+                                </label>
+                            </div>
                         </div>
                         <div class="text-danger" *ngIf="f.TeamInfo.invalid  && f.TeamInfo.touched && isSubmitted">
                             TeamInfo Required.
@@ -68,8 +77,12 @@
                 </div>
 
                 <div class="mr-2 mb-5">
-                    <mat-spinner-button style="border-radius: 5px" class="text-left float-right ml-3" [options]="cancelSpinnerButtonOptions" (btnClick)="cancelNonProductSpecific(myForm)"></mat-spinner-button>
-                    <mat-spinner-button style="border-radius: 5px" class="text-left float-right " [options]="createSpinnerButtonOptions" (btnClick)="createNonProductSpecific(myForm)"></mat-spinner-button>
+                    <mat-spinner-button style="border-radius: 5px" class="text-left float-right ml-3"
+                        [options]="cancelSpinnerButtonOptions" (btnClick)="cancelNonProductSpecific(myForm)">
+                    </mat-spinner-button>
+                    <mat-spinner-button style="border-radius: 5px" class="text-left float-right "
+                        [options]="createSpinnerButtonOptions" (btnClick)="createNonProductSpecific(myForm)">
+                    </mat-spinner-button>
                 </div>
             </form>
         </div>
