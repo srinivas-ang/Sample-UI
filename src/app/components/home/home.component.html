@@ -46,12 +46,42 @@
                               [ngClass]="{'bg_primary': menuSelectedOption == menuptions.ADD_CLIENT}">
                               {{menuptions.ADD_CLIENT}}</mat-list-item>
                     </a>
+                    <a (click)="menuSelectedOption=menuptions.USER_MANAGEMENT" class="cursor-pointer">
+                         <mat-list-item role="listitem"  class="border_bottom"
+                              [ngClass]="{'bg_primary': menuSelectedOption == menuptions.USER_MANAGEMENT}">
+                              {{menuptions.USER_MANAGEMENT}}</mat-list-item>
+                    </a>
+                    <a (click)="menuSelectedOption=menuptions.CLIENT_MANAGEMENT" class="cursor-pointer">
+                         <mat-list-item role="listitem"  class="border_bottom"
+                              [ngClass]="{'bg_primary': menuSelectedOption == menuptions.CLIENT_MANAGEMENT}">
+                              {{menuptions.CLIENT_MANAGEMENT}}</mat-list-item>
+                    </a>
+                    <a (click)="menuSelectedOption=menuptions.REPORTS" class="cursor-pointer">
+                         <mat-list-item role="listitem"  class="border_bottom"
+                              [ngClass]="{'bg_primary': menuSelectedOption == menuptions.REPORTS}">
+                              {{menuptions.REPORTS}}</mat-list-item>
+                    </a>
+                    
+                    <a (click)="menuSelectedOption=menuptions.EXCEL_REPORTS" class="cursor-pointer">
+                         <mat-list-item role="listitem"  class="border_bottom"
+                              [ngClass]="{'bg_primary': menuSelectedOption == menuptions.EXCEL_REPORTS}">
+                              {{menuptions.EXCEL_REPORTS}}</mat-list-item>
+                    </a>
                </mat-list>
           </div>
 
           <div class="col ml-3 card" *ngIf="menuSelectedOption !=''">
+               <div *ngIf="menuSelectedOption == menuptions.REPORTS">
+                    <app-reports></app-reports>
+               </div>
+               <div *ngIf="menuSelectedOption == menuptions.EXCEL_REPORTS">
+                    <app-excelreports></app-excelreports>
+               </div>
                <div *ngIf="menuSelectedOption == menuptions.PITCH_CREATION">
                     <app-pitchcreation></app-pitchcreation>
+               </div>
+               <div *ngIf="menuSelectedOption == menuptions.CLIENT_MANAGEMENT">
+                    <app-manageclient></app-manageclient>
                </div>
                <div *ngIf="menuSelectedOption == menuptions.NON_PRODUCT_SPECIFIC_PITCH">
                     <app-non-productspecifcpitchcreation></app-non-productspecifcpitchcreation>
@@ -64,6 +94,9 @@
                </div>
                <div  *ngIf="menuSelectedOption == menuptions.ADD_CLIENT">
                     <app-addclient></app-addclient>
+               </div>
+               <div  *ngIf="menuSelectedOption == menuptions.USER_MANAGEMENT">
+                    <app-usermanagement></app-usermanagement>
                </div>
           </div>
 

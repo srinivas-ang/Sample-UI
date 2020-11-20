@@ -50,5 +50,9 @@ export enum MenuOptions {
   RESTRICTED_FOLDER="Restricted Folder",
   RLATIONSHIP_FOLDER="Relationship Creation Folder",
   ADD_CLIENT="Add Client",
-  NON_PRODUCT_SPECIFIC_PITCH="Non-Product Specific Pitch"
+  NON_PRODUCT_SPECIFIC_PITCH="Non-Product Specific Pitch",
+  USER_MANAGEMENT="User Management",
+  CLIENT_MANAGEMENT="Client Exception Queue",
+  REPORTS="Reports",
+  EXCEL_REPORTS="Excel Reports"
 }
