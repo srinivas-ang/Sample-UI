@@ -1,0 +1,11 @@
+.fieldset_style{
+    border: solid;
+    border-width: thin;
+    border-color: #efe6e6;
+    border-radius: 5px;
+}
+.legend_style{
+    width: auto;
+    color: #7e7f80;
+    font-size: 14px;
+}

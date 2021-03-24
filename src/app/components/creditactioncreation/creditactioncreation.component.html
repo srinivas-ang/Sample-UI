@@ -1,0 +1,309 @@
+<div id="main-content" class="mt-3 mb-5">
+    <div class=" mt-4 ml-2">
+        <div class="container">
+            <form class="" [formGroup]="_creditActionCreationForm" #myForm="ngForm">
+                <div class="row mx-0">
+                    <mat-form-field class="w-100 ">
+                        <input type="text" formControlName="CreditActionName" matInput placeholder="Credit Action Name"
+                            required>
+                    </mat-form-field>
+                    <div class="text-danger"
+                        *ngIf="f.CreditActionName.invalid && f.CreditActionName.errors.required && isSubmitted">
+                        Credit Action Name Required.
+                    </div>
+                    <mat-form-field class="w-100">
+                        <input matInput [matDatepicker]="picker" [min]='minDate' formControlName="CreditActionDate"
+                            placeholder="Credit Action Date" required>
+                        <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <div class="text-danger"
+                        *ngIf="f.CreditActionDate.invalid && f.CreditActionDate.touched && f.CreditActionDate.errors?.matDatepickerMin">
+                        Selected Credit Action Date is less than today date.
+                    </div>
+                    <div class="text-danger"
+                        *ngIf="f.CreditActionDate.invalid && f.CreditActionDate.errors.required && (f.CreditActionDate.touched || isSubmitted)">
+                        Credit Action date Required.
+                    </div>
+                    <fieldset class="mt-2 mb-2 w-100 fieldset_style">
+                        <legend class="px-1 ml-2 legend_style"> Credit Transacion Information</legend>
+                        <fieldset class="mt-2 mb-2 mx-2 fieldset_style">
+                            <legend class="px-1 ml-2 legend_style">Relationship Information</legend>
+                            <div class="mx-4">
+                                <mat-form-field class="w-100">
+                                        <input type="text" disabled formControlName="Industry" matInput placeholder="Industry"
+                                            required>
+                                    <!-- <mat-label>Industry</mat-label> -->
+                                    <!-- <mat-select formControlName="Industry" [multiple]="false">
+                                        <mat-option>
+                                            <ngx-mat-select-search [placeholderLabel]="'Search industry'"
+                                                [formControl]="industrySearchCtrl"
+                                                [noEntriesFoundLabel]="'no matching team found'">
+                                            </ngx-mat-select-search>
+                                        </mat-option>
+                                        <mat-option
+                                            *ngFor="let industry of industryJson | listfilter:industrySearchText "
+                                            [value]="industry.Value">
+                                            {{industry.Name}}
+                                        </mat-option>
+                                    </mat-select> -->
+                                </mat-form-field>
+                                <div class="text-danger"
+                                    *ngIf="f.Industry.invalid && f.Industry.errors.required && isSubmitted">
+                                    Industry Required.
+                                </div>
+                                <mat-form-field class="w-100">
+                                    <input type="text" disabled formControlName="ClientName" matInput placeholder="Client Name"
+                                    required>
+                                    <!-- <mat-label>Client Name</mat-label>
+                                    <mat-select formControlName="ClientName" [multiple]="false">
+                                        <mat-option>
+                                            <ngx-mat-select-search [placeholderLabel]="'Search client name'"
+                                                [formControl]="clientNameSearchCtrl"
+                                                [noEntriesFoundLabel]="'no matching client found'">
+                                            </ngx-mat-select-search>
+                                        </mat-option>
+                                        <mat-option
+                                            *ngFor="let client of clientNamesJson | listfilter:clientNameSearchText"
+                                            [value]="client.Value">
+                                            {{client.Name}}
+                                        </mat-option>
+
+                                    </mat-select> -->
+                                </mat-form-field>
+                                <div class="text-danger"
+                                    *ngIf="f.ClientName.invalid && f.ClientName.errors.required && isSubmitted">
+                                    Client Name Required.
+                                </div>
+                                <mat-form-field class="w-100">
+                                    <mat-label>Report Type</mat-label>
+                                    <mat-select formControlName="ReportType" [multiple]="false">
+                                        <mat-option>
+                                            <ngx-mat-select-search [placeholderLabel]="'Search Report Type'"
+                                                [formControl]="reportTypeSearchCtrl"
+                                                [noEntriesFoundLabel]="'no matching report type found'">
+                                            </ngx-mat-select-search>
+                                        </mat-option>
+                                        <mat-option *ngFor="let report of reportTypesJson | listfilter:reportTypeSearchText"
+                                            [value]="report.Value">
+                                            {{report.Name}}
+                                        </mat-option>
+
+                                    </mat-select>
+                                </mat-form-field>
+                                <div class="text-danger"
+                                    *ngIf="f.ReportType.invalid && f.ReportType.errors.required && isSubmitted">
+                                    Report Type Required.
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="mt-2 mb-2 mx-2 fieldset_style">
+                            <legend class="px-1 ml-2 legend_style">Product Information</legend>
+                            <div class="row mx-1">
+                                <mat-icon (click)="addProductInfoForm()"
+                                    class="float-right mx-4 mb-2 bg_primary cursor-pointer"
+                                    *ngIf="!productInfoForm.invalid">add</mat-icon>
+                                <mat-icon (click)="removeAllProductInfoForm()" *ngIf="productInfoForm.length!=1"
+                                    class="float-right mx-4 mb-2 bg_primary cursor-pointer">close</mat-icon>
+                            </div>
+                            <div class="mx-4  mb-2 fieldset_style"
+                                *ngFor="let productForm of productInfoForm.controls; let i=index">
+                                <div [formGroup]="productForm" class="row m-0 mt-1">
+                                    <div class="col-sm-3 mt-1">
+                                        <mat-form-field class="w-100">
+                                            <mat-label>CPL1</mat-label>
+                                            <mat-select formControlName="CPL1" [multiple]="false" (selectionChange)="onChangeCPL($event,i,'CPL1')">
+                                                <mat-option
+                                                    *ngFor="let cpl1 of cpl1Json"
+                                                    [value]="cpl1.Value">
+                                                    {{cpl1.Name}}
+                                                </mat-option>
+        
+                                            </mat-select>
+                                            <!-- <input matInput formControlName="CPL1" placeholder="CPL1" aria-label="CPL1"
+                                                (keyup)="cplKeyPress($event,i,'CPL1')" [matAutocomplete]="autoCPL1"
+                                                required>
+                                            <mat-autocomplete #autoCPL1="matAutocomplete"
+                                                (optionSelected)="onChangeCPL($event.option.value,i,'CPL1')">
+                                                <mat-option *ngFor="let cpl1 of cpl1Json " [value]="cpl1.Value">
+                                                    {{cpl1.Name}}
+                                                </mat-option>
+                                            </mat-autocomplete> -->
+                                        </mat-form-field>
+                                        <div class="text-danger"
+                                            *ngIf="productForm['controls'].CPL1.status!='VALID' && isSubmitted">
+                                            CPL1 Required.
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 mt-1" *ngIf="productForm['controls'].CPL1.status=='VALID'">
+                                        <mat-form-field class="w-100">
+                                            <mat-label>CPL2</mat-label>
+                                            <mat-select formControlName="CPL2" [multiple]="false"  (selectionChange)="onChangeCPL($event,i,'CPL2')">
+                                                <mat-option *ngFor="let cpl2 of filteredCPL2" [value]="cpl2.Value">
+                                                    {{cpl2.Name}}
+                                                </mat-option>
+        
+                                            </mat-select>
+                                            <!-- <input matInput formControlName="CPL2" placeholder="CPL2" aria-label="CPL2"
+                                                (keyup)="cplKeyPress($event,i,'CPL2')" [matAutocomplete]="autoCPL2"
+                                                required>
+
+                                            <mat-autocomplete #autoCPL2="matAutocomplete" (optionSelected)="onChangeCPL($event.option.value,i,'CPL1')">
+                                                <mat-option *ngFor="let cpl2 of filteredCPL2 " [value]="cpl2.Value">
+                                                    {{cpl2.Name}}
+                                                </mat-option>
+                                            </mat-autocomplete> -->
+                                        </mat-form-field>
+                                        <div class="text-danger"
+                                            *ngIf="productForm['controls'].CPL2.status!='VALID' && isSubmitted">
+                                            CPL2 Required.
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 mt-1" *ngIf="productForm['controls'].CPL2.status=='VALID'">
+                                        <mat-form-field class="w-100">
+                                            <mat-label>CPL3</mat-label>
+                                            <mat-select formControlName="CPL3" [multiple]="false">
+                                                <mat-option *ngFor="let cpl3 of filteredCPL3" [value]="cpl3.Value">
+                                                    {{cpl3.Name}}
+                                                </mat-option>
+        
+                                            </mat-select>
+                                            <!-- <input matInput formControlName="CPL3" placeholder="CPL3" aria-label="CPL2"
+                                                 [matAutocomplete]="autoCPL3"
+                                                required>
+
+                                            <mat-autocomplete #autoCPL3="matAutocomplete">
+                                                <mat-option *ngFor="let cpl3 of filteredCPL3 " [value]="cpl3.Value">
+                                                    {{cpl3.Name}}
+                                                </mat-option>
+                                            </mat-autocomplete> -->
+                                        </mat-form-field>
+                                        <div class="text-danger"
+                                            *ngIf="productForm['controls'].CPL3.status!='VALID' && isSubmitted">
+                                            CPL3 Required.
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1 mt-3 text-danger cursor-pointer">
+                                        <mat-icon (click)="removeProductInfoForm(i)" *ngIf="i!=0">close</mat-icon>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="mt-2 mb-2 mx-2 fieldset_style">
+                            <legend class="px-1 ml-2 legend_style">Team Information</legend>
+                            <div class="mx-4 row">
+                                <div class="col-sm">
+                                    <angular2-multiselect formControlName="TeamInfo" [data]="teamInfoJson"
+                                        [settings]="teamInfoDropdownSettings" >
+                                    </angular2-multiselect>
+
+
+                                    <div class="text-danger" *ngIf="f.TeamInfo.invalid  && (f.TeamInfo.touched || isSubmitted)">
+                                        TeamInfo Required.
+                                    </div>
+                                </div>
+                                <!-- <div class="card col-sm-4" style="max-height: 150px;
+                                                overflow: auto;" *ngIf="f.TeamInfo.valid">
+                                    <label class="font-weight-bold">Selected Team Info</label>
+                                    <label class="w-100 pl-3" *ngFor="let team of f.TeamInfo?.value; let i=index;">
+                                        <span>{{i+1}}. {{team.Name}}</span>
+                                    </label>
+                                </div> -->
+
+                            </div>
+                            <div class="mx-4 row mt-2 mb-2">
+                                <div class="col-sm">
+                                    <angular2-multiselect formControlName="AdditionalTeamInfo" [data]="teamInfoJson"
+                                        [settings]="teamInfoDropdownSettings" >
+                                    </angular2-multiselect>
+
+
+                                    <div class="text-danger" *ngIf="f.AdditionalTeamInfo.invalid  && (f.AdditionalTeamInfo.touched || isSubmitted)">
+                                        Additional TeamInfo Required.
+                                    </div>
+                                </div>
+                                <!-- <div class="card col-sm-4" style="max-height: 150px;
+                                                overflow: auto;" *ngIf="f.TeamInfo.valid">
+                                    <label class="font-weight-bold">Selected Team Info</label>
+                                    <label class="w-100 pl-3" *ngFor="let team of f.TeamInfo?.value; let i=index;">
+                                        <span>{{i+1}}. {{team.Name}}</span>
+                                    </label>
+                                </div> -->
+
+                            </div>
+                            <!-- <div class="mx-4 row mt-4">
+                                <div class="col-sm">
+                                    <mat-form-field class="w-100">
+                                        <textarea style="height:100px" readonly formControlName="AdditionalTeamInfo"
+                                            matInput placeholder="Additional Credit Transaction Team"></textarea>
+                                    </mat-form-field>
+                                </div>
+                                <div class="card mb-3">
+                                    <div>
+                                        <mat-icon (click)="openDialog()" class="font-weight-bold cursor-pointer"
+                                            style="color: forestgreen;">more_vert</mat-icon>
+                                    </div>
+                                    <div>
+                                        <mat-icon (click)='clearAdditionalTeamInfo()'
+                                            class="font-weight-bold cursor-pointer" style="color: forestgreen;">close
+                                        </mat-icon>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- <div class="mx-5 row mt-4 mb-4">
+                                <label>Corp Finn Involved : </label>
+                                <mat-radio-group class="ml-5" aria-label="Corp Finn Involved"
+                                    formControlName="CorpFinnInvolved">
+                                    <mat-radio-button color="primary" class="mr-4" value=true>Yes</mat-radio-button>
+                                    <mat-radio-button color="primary" value=false>No</mat-radio-button>
+                                </mat-radio-group>
+                            </div> -->
+                        </fieldset>
+                        <div class="mx-4 row mt-4">
+                            <label>Legal Docs Information:</label>
+                            <div class="text-danger">
+                                By selecting 'No' an 'Executed Legal Docs' subfolder will not be created for this Credit
+                                Transaction or mirrored into the 'Legal' folder
+                                once transacion is closed. Only select 'No' if you will not need to store executed legal
+                                documents related to this transaction.
+                            </div>
+                            <div class="mt-3">
+                                <span>Executed Legal Docs subfolder required for this transaction?:</span>
+                                <span>
+                                    <mat-radio-group class="ml-5" aria-label="Is Legal ExeDocs"
+                                        formControlName="IsLegalExeDocs" (change)="radioChange($event)">
+                                        <mat-radio-button color="primary" class="mr-4" value=false>No</mat-radio-button>
+                                        <mat-radio-button color="primary" value=true>Yes</mat-radio-button>
+                                    </mat-radio-group>
+                                </span>
+                            </div>
+                            <fieldset class="w-100 mt-3 fieldset_style mb-3">
+                                <div class="mx-4">
+                                    <mat-form-field class="w-100 ">
+                                        <input type="text" formControlName="FolderName" matInput
+                                            placeholder="Folder Name" required>
+                                    </mat-form-field>
+                                    <div class="text-danger"
+                                        *ngIf="f.FolderName.invalid && f.FolderName.errors.required && isSubmitted">
+                                        Folder Name Required.
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="mr-2 mb-5">
+                    <!-- {{isSubmitted}} -->
+                    	<!-- <button mat-raised-button  class=" bg_primary float-right" (click)="createCreditTransaction(myForm)">
+                                <mat-icon *ngIf="isSubmitted"><mat-spinner color="accent" diameter="20" >
+                        </mat-spinner></mat-icon>Submit
+                      </button> -->
+                    <mat-spinner-button style="border-radius: 5px" class="text-left float-right"
+                        [options]="pitchSpinnerButtonOptions" (btnClick)="createCreditTransaction(myForm)"></mat-spinner-button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
