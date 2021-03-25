@@ -22,4 +22,12 @@ describe('CreditactioncreationComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('check client name is test', () => {
+    component.f.ClientName.setValue("test");
+    expect(component.f.ClientName.value).toEqual("test");
+  });
+  it('check Industry value is test', () => {
+    component.f.Industry.setValue("test");
+    expect(component.f.Industry.value).toEqual("test");
+  });
 });
