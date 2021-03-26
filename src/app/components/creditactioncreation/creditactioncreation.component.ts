@@ -115,14 +115,26 @@ export class CreditactioncreationComponent implements OnInit {
       ProductInfo: new FormArray([]),
       TeamInfo: new FormControl('', Validators.required),
       AdditionalTeamInfo: new FormControl(''),
-      IsLegalExeDocs: new FormControl(''),
-      FolderName: new FormControl('', Validators.required)
+      IsLegalExeDocs: new FormControl('false'),
+      //FolderName: new FormControl('', Validators.required)
+      FolderInfo: new FormArray([]),
 
     });
-    this._creditActionCreationForm.controls['FolderName'].disable();
+    // this._creditActionCreationForm.controls['FolderName'].disable();
     this._creditActionCreationForm.controls['Industry'].disable();
     this._creditActionCreationForm.controls['ClientName'].disable();
     this.addProductInfoForm();
+    this.addFolderInfoForm();
+    debugger
+    setTimeout(() => {
+      var that=this;
+      for (var i = this.folderInfoForm.length - 1; i >= 0; i--) {
+        debugger
+        that.folderInfoForm.controls[i].disable();//.FolderName.disable.disble();
+      }
+      // this._creditActionCreationForm.get('FolderInfo.FolderName').disable();
+    }, 100);
+    
   }
   get f() {
     return this._creditActionCreationForm.controls;
@@ -130,8 +142,29 @@ export class CreditactioncreationComponent implements OnInit {
   get productInfoForm() {
     return this.f.ProductInfo as FormArray;
   }
+  get folderInfoForm() {
+    return this.f.FolderInfo as FormArray;
+  }
+addFolderInfoForm(){
+  debugger
+  if(!this.f.FolderInfo.invalid){
+    this.folderInfoForm.push(this.formBuilder.group({
+      FolderName: ['', Validators.required],
+    }));
+  }
+}
+removeFolderInfoForm(index) {
+  this.folderInfoForm.removeAt(index);
+}
+removeAllFolderInfoForm() {
+  for (var i = this.folderInfoForm.length - 1; i >= 0; i--) {
+    this.folderInfoForm.removeAt(i);
+  }
+  this.addFolderInfoForm();
 
+}
   addProductInfoForm() {
+    debugger
     if (!this.f.ProductInfo.invalid) {
       this.productInfoForm.push(this.formBuilder.group({
         CPL1: ['', Validators.required],
@@ -195,15 +228,32 @@ else if(name == 'CPL2'){
     console.log($event.source.name, $event.value);
 
     if ($event.value === "true") {
-      this._creditActionCreationForm.controls['FolderName'].enable();
+      var that=this;
+      // this._creditActionCreationForm.get('FolderInfo.FolderName').enable();
+      for (var i = this.folderInfoForm.length - 1; i >= 0; i--) {
+        debugger
+        that.folderInfoForm.controls[i].enable();
+      }
     }
     else {
-      this._creditActionCreationForm.controls['FolderName'].setValue('');
-      this._creditActionCreationForm.controls['FolderName'].disable();
+      this.removeAllFolderInfoForm();
+      var that=this;
+      for (var i = this.folderInfoForm.length - 1; i >= 0; i--) {
+        debugger
+        that.folderInfoForm.controls[i].disable();
+      }
+      // this._creditActionCreationForm.get('FolderInfo.FolderName').disable();
     }
   }
 
   createCreditTransaction(form) {
+    
+    let folders=[]
+    this._creditActionCreationForm.controls.FolderInfo.value.forEach((item) => 
+    { 
+      folders.push(item.FolderName);
+     
+    });
     debugger
     if (this._creditActionCreationForm.invalid) {
       this.isSubmitted = true;

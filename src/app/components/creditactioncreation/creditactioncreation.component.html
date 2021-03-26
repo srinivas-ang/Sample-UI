@@ -13,9 +13,9 @@
                     </div>
                     <mat-form-field class="w-100">
                         <input matInput [matDatepicker]="picker" [min]='minDate' formControlName="CreditActionDate"
-                            placeholder="Credit Action Date" required>
+                            placeholder="Credit Action Date" required disabled>
                         <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-datepicker #picker disabled="false"></mat-datepicker>
                     </mat-form-field>
 
                     <div class="text-danger"
@@ -280,15 +280,35 @@
                                 </span>
                             </div>
                             <fieldset class="w-100 mt-3 fieldset_style mb-3">
-                                <div class="mx-4">
+                                <div class="row mx-1 mb-2 mt-1" *ngIf="f.IsLegalExeDocs.value == 'true'">
+                                    <mat-icon (click)="addFolderInfoForm()"
+                                        class="float-right mx-4 mb-2 bg_primary cursor-pointer"
+                                        *ngIf="!folderInfoForm.invalid">add</mat-icon>
+                                    <mat-icon (click)="removeAllFolderInfoForm()" *ngIf="folderInfoForm.length!=1"
+                                        class="float-right mx-4 mb-2 bg_primary cursor-pointer">close</mat-icon>
+                                </div>
+                                <div class="mx-4"
+                                *ngFor="let folderForm of folderInfoForm.controls; let i=index">
+                                <div [formGroup]="folderForm" class="row m-0">
+                                    <div class="col-sm-10">
                                     <mat-form-field class="w-100 ">
                                         <input type="text" formControlName="FolderName" matInput
                                             placeholder="Folder Name" required>
                                     </mat-form-field>
-                                    <div class="text-danger"
+                                </div>
+                                    <!-- <div class="text-danger"
                                         *ngIf="f.FolderName.invalid && f.FolderName.errors.required && isSubmitted">
                                         Folder Name Required.
+                                    </div> -->
+                                    <div class="text-danger"
+                                    *ngIf="folderForm['controls'].FolderName.status!='VALID' && isSubmitted">
+                                    Folder Name Required.
                                     </div>
+                                <div class="col-sm-1 mt-3 text-danger cursor-pointer">
+                                    <mat-icon (click)="removeFolderInfoForm(i)" *ngIf="i!=0">close</mat-icon>
+
+                                </div>
+                                </div>
                                 </div>
                             </fieldset>
                         </div>
