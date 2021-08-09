@@ -1,3 +1,9 @@
 .cls{
     background-color: white;
 }
+td.mat-cell{
+    border-bottom-width: 0px !important;
+}
+th.mat-header-cell{
+    border-bottom-width: 0px !important;
+}
