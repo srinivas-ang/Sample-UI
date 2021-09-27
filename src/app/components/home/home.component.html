@@ -67,10 +67,34 @@
                               [ngClass]="{'bg_primary': menuSelectedOption == menuptions.EXCEL_REPORTS}">
                               {{menuptions.EXCEL_REPORTS}}</mat-list-item>
                     </a>
+
+                    <a (click)="menuSelectedOption=menuptions.CREDIT_ACTION" class="cursor-pointer">
+                         <mat-list-item role="listitem"  class="border_bottom"
+                              [ngClass]="{'bg_primary': menuSelectedOption == menuptions.CREDIT_ACTION}">
+                              {{menuptions.CREDIT_ACTION}}</mat-list-item>
+                    </a>
+                    <a (click)="menuSelectedOption=menuptions.ADD_GICG_CLIENT" class="cursor-pointer">
+                         <mat-list-item role="listitem"  class="border_bottom"
+                              [ngClass]="{'bg_primary': menuSelectedOption == menuptions.ADD_GICG_CLIENT}">
+                              {{menuptions.ADD_GICG_CLIENT}}</mat-list-item>
+                    </a>
+                    
+                    <a (click)="menuSelectedOption=menuptions.RECYCLE_BIN" class="cursor-pointer">
+                         <mat-list-item role="listitem"  class="border_bottom"
+                              [ngClass]="{'bg_primary': menuSelectedOption == menuptions.RECYCLE_BIN}">
+                              {{menuptions.RECYCLE_BIN}}</mat-list-item>
+                    </a>
                </mat-list>
           </div>
 
           <div class="col ml-3 card" *ngIf="menuSelectedOption !=''">
+               
+               <div *ngIf="menuSelectedOption == menuptions.ADD_GICG_CLIENT">
+                    <app-creditaction></app-creditaction>
+               </div>
+               <div *ngIf="menuSelectedOption == menuptions.CREDIT_ACTION">
+                    <app-creditaction></app-creditaction>
+               </div>
                <div *ngIf="menuSelectedOption == menuptions.REPORTS">
                     <app-reports></app-reports>
                </div>
@@ -98,8 +122,66 @@
                <div  *ngIf="menuSelectedOption == menuptions.USER_MANAGEMENT">
                     <app-usermanagement></app-usermanagement>
                </div>
+               
+               <div  *ngIf="menuSelectedOption == menuptions.RECYCLE_BIN">
+                    <app-recyclebin></app-recyclebin>
+               </div>
           </div>
 
      </div>
     
+    
+</div>
+<div class="row mx-0">
+     <div class="col-md-2"></div>
+     <div class="col-md-10 ">
+     <ul class="input-group pl-0">
+          <li *ngFor="let bread of breadcumb;let i=index" class="list-inline mr-2 " [ngClass]="{'bread_color cursor-pointer': i != breadcumb.length-1}" (click)="i != breadcumb.length-1 ? breadcumevent(bread.id,bread.name,i) : false">
+{{bread.name}}
+          </li>
+     </ul>
+</div>
+</div>
+<div class="row mx-0">
+     <div class="col-md-2">
+     <cdk-virtual-scroll-viewport class="viewport" [itemSize]="10">
+         <div class="card">
+          <div *cdkVirtualFor="let item of files1" class="pl-1">
+              <div class="cursor-pointer" [ngClass]="{'text-monospace bread_color': selectedRoot == item.label}">
+                  <div class="input-group mt-3" (click)="getChild(item.data,item.label,true,false);selectedRoot=item.label"  >
+                      <div [ngClass]="item.collapsedIcon" class="ml-2 cursor-pointer text-warning">
+                         <mat-icon>folder</mat-icon>
+                      </div>
+                      <div class="ml-1 cursor-pointer">
+                          {{item.label}}
+                      </div>
+                  </div>
+              </div>
+          </div>
+     </div>
+      </cdk-virtual-scroll-viewport>
+     </div>
+     <div class="col-md-10">
+          <div class="row mr-0 card">
+          <cdk-virtual-scroll-viewport class="viewport_child card" [itemSize]="10">
+               <div *ngIf="isLoading" class="text-center border"><i class="fa fa-spinner"></i>loading...</div>
+               <mat-grid-list cols="9" rowHeight="2:1" >
+               <div *cdkVirtualFor="let item of childs" class="pl-1">
+                         <mat-grid-tile>
+                               <div class="cursor-pointer list-inline">
+                              <div class="row mx-0" (click)="getChild(item.data,item.label,false,false)">
+                                  <div [ngClass]="item.collapsedIcon" class="mx-0 px-0 cursor-pointer text-warning">
+                                     <mat-icon>folder</mat-icon>
+                                  </div>
+                                  <div class="cursor-pointer ml-2 px-0">
+                                      {{item.label}}
+                                  </div>
+                              </div>
+                          </div>
+                         </mat-grid-tile>
+               </div>
+          </mat-grid-list>
+           </cdk-virtual-scroll-viewport>
+          </div>
+     </div>
 </div>
