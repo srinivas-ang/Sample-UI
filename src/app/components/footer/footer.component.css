@@ -1,0 +1,11 @@
+li {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+ul{
+    display: inline-flex;
+    list-style-type: none;
+}
+.footer_bg{
+    background-color: #f7f7f7;
+}
