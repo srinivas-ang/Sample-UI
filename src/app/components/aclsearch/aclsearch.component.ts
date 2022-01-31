@@ -42,6 +42,18 @@ export class AclsearchComponent implements OnInit {
     this.searchResult.sort = this.sort;
   }
   aclSearch() {
+      let i=100;
+      while(i>=1){
+        var dat= new Aclmodel();
+        dat.objectId="6577t76t757"+'_'+i;
+        dat.folderType="folder"+"_"+i;
+        dat.folderPath="fj/uy7878/"+"_"+i;
+        dat.folderName="folder"+'_'+i;
+        this.lstACL.push(dat);
+        i--;
+      }
+      debugger
+      this.searchResult = new MatTableDataSource<any>(this.lstACL);
     this.isLoading = true;
     this.isSubmitted=true;
   }
