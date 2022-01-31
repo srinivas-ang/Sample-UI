@@ -1,0 +1,17 @@
+.viewport {
+    height: 500px;
+    width: 100%;
+    /* background: #C4BBB8; */
+    /* margin: 2em 8em 8em; */
+    box-shadow: 1px 1px 1px grey;
+  }
+  .viewport_child {
+    height: 500px;
+    width: 100%;
+    /* background: #C4BBB8; */
+    /* margin: 2em 8em 8em; */
+    box-shadow: 1px 1px 1px grey;
+  }
+  .bread_color{
+      color: #a93e00 !important;
+  }
