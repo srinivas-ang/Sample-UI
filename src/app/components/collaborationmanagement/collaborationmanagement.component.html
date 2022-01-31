@@ -11,13 +11,24 @@
                                         Folder Name Required.
                                     </div>
                                 </div>
-                                <div class="mx-0 row">
+                                <mat-radio-group aria-label="Select an option">
+                                    <mat-radio-button value="1" (change)="infoChange('team')">Team Info</mat-radio-button>
+                                    <mat-radio-button value="2" class="ml-3" (change)="infoChange('group')">Group Info</mat-radio-button>
+                                  </mat-radio-group>
+                                <div class="mx-0 row" *ngIf="selectedInfo=='team'">
                                         <angular2-multiselect formControlName="TeamInfo" [data]="teamInfoJson"
                                             [settings]="teamInfoDropdownSettings" class="w-100"> </angular2-multiselect>
                                         <div class="text-danger" *ngIf="f.TeamInfo.invalid  && (f.TeamInfo.touched || isSubmitted)">
                                             TeamInfo Required.
                                         </div>
                                 </div>
+                                <div class="mx-0 row mt-2"  *ngIf="selectedInfo=='group'">
+                                    <angular2-multiselect formControlName="GroupInfo" [data]="grpoupInfoJson"
+                                        [settings]="groupInfoDropdownSettings" class="w-100"> </angular2-multiselect>
+                                    <div class="text-danger" *ngIf="f.GroupInfo.invalid  && (f.GroupInfo.touched || isSubmitted)">
+                                        GroupInfo Required.
+                                    </div>
+                            </div>
                         <div class="mr-2 mt-5 mb-5">
                             <!-- <button mat-button color="primary" (click)="createCollaboration()"  class="cursor-pointer text-left float-right ml-3 bg_primary" >Create</button> -->
                             <mat-spinner-button style="border-radius: 5px" class="text-left float-right ml-3"
@@ -31,3 +42,4 @@
         </div>
     </div>
 </div>
+
