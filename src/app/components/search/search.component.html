@@ -92,8 +92,52 @@
 
                                     </div>
                                     </div>
-                                    <div class="row mx-0">
-
+                                    <div class="mb-5 mt-3">
+                                        <div class="row mx-0" style="max-height: 330px;overflow-y: scroll;">
+                                            <mat-table [dataSource]="searchResult_deals" class="example-table w-100" matSort>
+                                                <!-- Number Column -->
+                                                <ng-container matColumnDef="objectId">
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-white">Object Id
+                                                    </mat-header-cell>
+                                                    <mat-cell *matCellDef="let row">
+                                                            <span class="ml-1" title="{{row.objectId}}">{{ row.objectId }}</span>
+                                                    </mat-cell>
+                                                </ng-container>
+                                                <ng-container matColumnDef="objectName">
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-white">Object Name
+                                                    </mat-header-cell>
+                                                    <mat-cell *matCellDef="let row">
+                                                      
+                                                        
+                                                            <span class="ml-1" title="{{row.objectName}}">{{ row.objectName }}</span>
+                                                        
+                                                    </mat-cell>
+                                                </ng-container>
+                                
+                                                <!-- State Column -->
+                                                <ng-container matColumnDef="clientName">
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header class="text-white">Client Name</mat-header-cell>
+                                                    <mat-cell *matCellDef="let row"><span title="{{row.clientName}}">{{ row.clientName }}</span></mat-cell>
+                                                </ng-container>
+                                
+                                                <!-- Title Column -->
+                                                <ng-container matColumnDef="filePath">
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header class="text-white">
+                                                        File Path
+                                                    </mat-header-cell>
+                                                    <mat-cell *matCellDef="let row">{{ row.filePath }}</mat-cell>
+                                                </ng-container>
+                                
+                                                <mat-header-row *matHeaderRowDef="displayedColumns_deals" class="bg_primary "
+                                                    style="border-radius: 10px;position: sticky !important;top: 0 !important;"></mat-header-row>
+                                                <mat-row *matRowDef="let row; columns: displayedColumns_deals;"
+                                                    style="border-radius: 10px; border: whitesmoke 1px solid;"></mat-row>
+                                            </mat-table>
+                                        </div>
+                                        <div class="row mx-0 mat-div">
+                                            <mat-paginator class="w-100 rounded border" [pageSizeOptions]="[5, 10, 20, 50]"  showFirstLastButtons
+                                                ></mat-paginator>
+                                        </div>
                                     </div>
                                 </div>
                                 <div *ngIf="selectedSearchOption == 3">

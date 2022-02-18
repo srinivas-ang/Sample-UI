@@ -1,7 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { DataSource } from "@angular/cdk/collections";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+import { Dealsmodel } from "./deals.model";
 
 @Component({
   selector: "app-search",
@@ -25,9 +30,17 @@ export class SearchComponent implements OnInit {
   public folderTypeCtrl: FormControl = new FormControl();
   public usecaseCtrl: FormControl = new FormControl();
   protected _onDestroy = new Subject<void>();
-
+  displayedColumns_checkedoutByUser = ['objectId', 'objectName', 'filePath'];
+  displayedColumns_deals = ['objectId', 'objectName', 'clientName', 'filePath'];
+  displayedColumns_ghost = ['objectId', 'objectName', 'filePath'];
   _searchForm: FormGroup;
-
+  searchResult_checkedoutByUser: MatTableDataSource<any>;
+  searchResult_deals: MatTableDataSource<any>;
+  searchResult_ghost: MatTableDataSource<any>;
+  lstDeals:Dealsmodel[]=[];
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  
   constructor() {
     this.folderSearchCtrl.valueChanges
       .pipe(takeUntil(this._onDestroy))
@@ -58,6 +71,17 @@ export class SearchComponent implements OnInit {
       classes: "myclass custom-class",
     };
   }
+  // ngAfterViewInit() {
+  //   this.searchResult_checkedoutByUser.paginator = this.paginator;
+  //   this.searchResult_checkedoutByUser.sort = this.sort;
+
+  //   this.searchResult_deals.paginator = this.paginator;
+  //   this.searchResult_deals.sort = this.sort;
+
+  //   this.searchResult_ghost.paginator = this.paginator;
+  //   this.searchResult_ghost.sort = this.sort;
+
+  // }
   initForm() {
     this._searchForm = new FormGroup({
       userInfo: new FormControl(""),
@@ -80,7 +104,20 @@ export class SearchComponent implements OnInit {
 
   }
   dealsSearch(){
-
+    let i=100;
+    while(i>=1){
+      var dat= new Dealsmodel();
+      dat.objectId="6577t76t757"+'_'+i;
+      dat.filePath="fj/uy7878/"+"_"+i;
+      dat.objectName="folder"+'_'+i;
+      dat.clientName="client_"+i;
+      this.lstDeals.push(dat);
+      i--;
+    }
+    debugger
+    this.searchResult_deals = new MatTableDataSource<any>(this.lstDeals);
+    this.searchResult_deals.paginator = this.paginator;
+    this.searchResult_deals.sort = this.sort;
   }
   ghostSearch(){
 
