@@ -1,0 +1,14 @@
+.cs{
+
+}
+/* <div  *ngIf="menuSelectedOption == menuptions.SEARCH">
+<app-search></app-search>
+</div>
+
+<a (click)="menuSelectedOption=menuptions.SEARCH" class="cursor-pointer">
+<mat-list-item role="listitem"  class="border_bottom"
+     [ngClass]="{'bg_primary': menuSelectedOption == menuptions.SEARCH}">
+     {{menuptions.SEARCH}}</mat-list-item>
+</a>
+
+SEARCH="Search" */
